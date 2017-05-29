@@ -3,7 +3,7 @@
  */
 
 import React, { Component } from 'react'
-import SingleEvent from './SingleEvent'
+import EventCard from './eventCard'
 import store from './../store/store'
 
 import { withRouter } from 'react-router'
@@ -29,14 +29,12 @@ class EventsList extends Component {
     render() {
         let events = this.props.data.events;
 
-        console.log('evts', events)
-
         return  (
             <div className="events__list">
                 {
                     events.map((el, i) =>
-                        <SingleEvent key={i}
-                                     props={el}
+                        <EventCard key={i}
+                                   props={el}
                         />
                     )
                 }
