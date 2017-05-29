@@ -4,9 +4,27 @@
 
 import React, { Component } from 'react'
 import { Route, Switch, Link } from 'react-router-dom'
+import { connect } from 'react-redux'
+import store from './../store/store'
 
 import SingleEvent from './SingleEvent'
 import UserCabinet from './userCabinet'
+
+
+const mapDispatchToProps = function (dispatch) {
+    return {
+        dispatch,
+        editTooltipTextHandler: function () {
+            console.log('here');
+        }
+    }
+};
+
+const mapStateToProps = function () {
+    return {
+        data : store.getState()
+    }
+};
 
 class Main extends Component {
     render() {
@@ -23,4 +41,7 @@ class Main extends Component {
     }
 }
 
-export default Main
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(Main);

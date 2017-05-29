@@ -8,6 +8,6 @@ const TopPanel = ({props}) => {
             <Link to="/cabinet">User cabinet</Link>
         </div>
     )
-}
+};
 
 export default TopPanel;
