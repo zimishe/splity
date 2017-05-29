@@ -25,12 +25,14 @@ const initialState = {
         {
             eventID: 7,
             eventDate: '02/06/2017',
+            eventDescription: 'Цісар в п\'ятницю',
             totalAmount: 0
         },
         
         {
             eventID: 13,
             eventDate: '01/06/2017',
+            eventDescription: 'Кам\'янець',
             totalAmount: 0
         }
     ],

@@ -3,37 +3,19 @@
  */
 
 import React, { Component } from 'react'
-import { Route, Switch, Link } from 'react-router-dom'
-import { connect } from 'react-redux'
-import store from './../store/store'
+import { Route, Switch } from 'react-router-dom'
 
 import SingleEvent from './SingleEvent'
 import UserCabinet from './userCabinet'
-
-
-const mapDispatchToProps = function (dispatch) {
-    return {
-        dispatch,
-        editTooltipTextHandler: function () {
-            console.log('here');
-        }
-    }
-};
-
-const mapStateToProps = function () {
-    return {
-        data : store.getState()
-    }
-};
+import EventsList from './EventsList'
 
 class Main extends Component {
     render() {
         return (
-            <div className="some-main-content">
-                <Link to="/event/3">3 event</Link>
-                <h2>some main content</h2>
+            <div className="events">
                 <Switch>
-                    <Route path='/event/:number' component={SingleEvent}/>
+                    <Route exact path='/' component={EventsList} />
+                    <Route path='/event/:number' component={SingleEvent} />
                     <Route path='/cabinet' component={UserCabinet}/>
                 </Switch>
             </div>
@@ -41,7 +23,4 @@ class Main extends Component {
     }
 }
 
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps
-)(Main);
+export default Main

@@ -1,0 +1,61 @@
+*, h1, h2, h3, h4, h5, h6, p, ul, li {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    outline: none;
+}
+
+html {
+    height: 100%;
+    min-height: 100%;
+}
+
+article, aside, details, figcaption, figure, footer, header, hgroup, main, nav, section, summary {
+    display: block;
+}
+
+ul, li {
+    list-style: none;
+}
+
+input, button {
+    border: none;
+    outline: 0;
+}
+
+body {
+    height: 100vh;
+    background: #f5f6f7;
+    width: 100%;
+    font: 16px/20px $regular;
+    color: #fff;
+    
+    &.fixed {
+        overflow: hidden;
+    }
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    vertical-align: middle;
+}
+
+a, a:hover, a:active, a:focus, a:visited {
+    text-decoration: none;
+    outline: none;
+    cursor: pointer;
+}
+
+.container {
+    max-width: 970px;
+    margin: 0 auto;
+    padding: 0 15px;
+    overflow: hidden;
+}
+
+p, a, li, span {
+    font: rem(14px, 16px) $regular;
+    color: #000;
+}
+

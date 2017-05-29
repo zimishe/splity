@@ -1,3 +1,4 @@
+import '../assets/css/style.css'
 import React, { Component } from 'react'
 
 import Main from './main'
