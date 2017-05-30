@@ -67,11 +67,11 @@
 }
 
 @mixin placeholder{
-    &::-webkit-input-placeholder {font: 1rem/36px $light, Arial; color: #6f7588;}
-    &:-moz-placeholder           {font: 1rem/36px $light, Arial; color: #6f7588;}
-    &::-moz-placeholder          {font: 1rem/36px $light, Arial; color: #6f7588;}
-    &:-ms-input-placeholder      {font: 1rem/36px $light, Arial; color: #6f7588;}
-    &::-moz-placeholder          {font: 1rem/36px $light, Arial; color: #6f7588;}
+    &::-webkit-input-placeholder {font: 1rem/36px $regular, Arial; color: #6f7588;}
+    &:-moz-placeholder           {font: 1rem/36px $regular, Arial; color: #6f7588;}
+    &::-moz-placeholder          {font: 1rem/36px $regular, Arial; color: #6f7588;}
+    &:-ms-input-placeholder      {font: 1rem/36px $regular, Arial; color: #6f7588;}
+    &::-moz-placeholder          {font: 1rem/36px $regular, Arial; color: #6f7588;}
 }
 
 @mixin circle ($radius) {

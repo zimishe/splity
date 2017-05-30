@@ -63,6 +63,64 @@ h1, h2, h3, h4 {
     }
 }
 
+.event-detailed {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0 15px;
+}
+
+.event-detailed__title {
+    p {
+        strong {
+            padding-right: 10px;
+        }
+    }
+}
+
+.event-detailed__donate {
+    display: flex;
+    flex-basis: 100%;
+    padding-top: 10px;
+    
+    input {
+        height: 40px;
+        padding: 0 10px;
+        font: rem(16px, 40px) $regular;
+        color: #000;
+        margin-right: 10px;
+        @include placeholder();
+        
+        &[type=number] {
+            -moz-appearance: textfield;
+            
+            &::-webkit-inner-spin-button,
+            &::-webkit-outer-spin-button {
+                -webkit-appearance: none;
+                margin: 0; 
+            }
+        }
+    }
+    
+    button {
+        width: 40px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #539cea;
+        border: none;
+        outline: none;
+        transition: all .2s ease;
+        font-size: 30px;
+        font-family: $regular;
+        
+        &:hover {
+            cursor: pointer;
+            background: #1E88E5;
+        }
+    }
+}
+
 .user-cabinet {
     flex-basis: 100%;
     margin-top: 15px;
