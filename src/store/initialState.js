@@ -18,6 +18,12 @@ const initialState = {
             id: 3,
             name: 'Oleksiy',
             balance: 400
+        },
+        
+        {
+            id: 7,
+            name: 'Donald Trump',
+            balance: 100
         }
     ],
     
@@ -26,14 +32,14 @@ const initialState = {
             eventID: 7,
             eventDate: 'Tue May 30 2017 19:33:47 GMT+0300 (FLE Daylight Time)',
             eventDescription: 'Цісар в п\'ятницю',
-            totalAmount: 0
+            totalAmount: 400
         },
         
         {
             eventID: 13,
             eventDate: 'Tue May 31 2017 19:33:47 GMT+0300 (FLE Daylight Time)',
             eventDescription: 'Кам\'янець',
-            totalAmount: 0
+            totalAmount: 500
         }
     ],
     
@@ -41,7 +47,7 @@ const initialState = {
         {
             userID: 3,
             eventID: 13,
-            amount: 70,
+            amount: 30,
             description: 'Cisar 4 beers',
             donationDate: 'Tue May 30 2017 19:33:47 GMT+0300 (FLE Daylight Time)'
         },
@@ -49,7 +55,7 @@ const initialState = {
         {
             userID: 3,
             eventID: 13,
-            amount: 13,
+            amount: 20,
             description: 'Cisar 2 pizzas',
             donationDate: 'Tue May 30 2017 19:33:47 GMT+0300 (FLE Daylight Time)'
         },
@@ -57,7 +63,7 @@ const initialState = {
         {
             userID: 1,
             eventID: 13,
-            amount: 200,
+            amount: 400,
             description: 'Cisar broken glass',
             donationDate: 'Tue May 30 2017 19:33:47 GMT+0300 (FLE Daylight Time)'
         },
