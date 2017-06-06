@@ -1,7 +1,7 @@
 /**
  * Created by eugene on 29.05.2017.
  */
-
+// eslint-disable-next-line
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 

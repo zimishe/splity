@@ -6,17 +6,17 @@ const initialState = {
     users: [
         {
             id: 1,
-            name: 'Eugene',
+            name: 'Євген',
             balance: 230
         },
         {
             id: 2,
-            name: 'Tanya',
+            name: 'Таня',
             balance: -10
         },
         {
             id: 3,
-            name: 'Oleksiy',
+            name: 'Олексій',
             balance: 400
         },
         
@@ -32,14 +32,14 @@ const initialState = {
             eventID: 7,
             eventDate: 'Tue May 30 2017 19:33:47 GMT+0300 (FLE Daylight Time)',
             eventDescription: 'Цісар в п\'ятницю',
-            totalAmount: 400
+            totalAmount: 0
         },
         
         {
             eventID: 13,
             eventDate: 'Tue May 31 2017 19:33:47 GMT+0300 (FLE Daylight Time)',
             eventDescription: 'Кам\'янець',
-            totalAmount: 500
+            totalAmount: 0
         }
     ],
     
@@ -48,7 +48,7 @@ const initialState = {
             userID: 3,
             eventID: 13,
             amount: 30,
-            description: 'Cisar 4 beers',
+            description: 'коньяк і кола в Танька',
             donationDate: 'Tue May 30 2017 19:33:47 GMT+0300 (FLE Daylight Time)'
         },
         
@@ -56,7 +56,7 @@ const initialState = {
             userID: 3,
             eventID: 13,
             amount: 20,
-            description: 'Cisar 2 pizzas',
+            description: 'картопля фрі і хот-доги Фрі Хаус',
             donationDate: 'Tue May 30 2017 19:33:47 GMT+0300 (FLE Daylight Time)'
         },
         
@@ -64,7 +64,7 @@ const initialState = {
             userID: 1,
             eventID: 13,
             amount: 400,
-            description: 'Cisar broken glass',
+            description: 'квитки на поїзд в Кам\'янець',
             donationDate: 'Tue May 30 2017 19:33:47 GMT+0300 (FLE Daylight Time)'
         },
         
@@ -72,7 +72,7 @@ const initialState = {
             userID: 1,
             eventID: 7,
             amount: 400,
-            description: 'kamianets beer',
+            description: 'вхідні квитки в фортецю Кам\'янець',
             donationDate: 'Tue May 31 2017 10:33:47 GMT+0300 (FLE Daylight Time)'
         }
     ]

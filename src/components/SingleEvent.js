@@ -8,7 +8,9 @@ import SingleActivity from './support/singleActivity'
 import UserBalance from './userBalance'
 
 import { getShortDate } from './../actions/formatDate'
-import { countUserBalance } from './../actions/countUserBalance'
+import { countUserBalance, countTotalAmount } from './../actions/countUserBalance'
+import { addDonation } from './../actions/addDonation'
+import { setEventTotalAmount } from './../actions/setEventTotalAmount'
 
 const mapDispatchToProps = function (dispatch) {
     return {
@@ -17,15 +19,38 @@ const mapDispatchToProps = function (dispatch) {
             e.preventDefault();
             
             
-            let dataToSend = {};
+            let dataToSend,
+                eventDataToSend,
+                donations = store.getState().donations,
+                donationsToSet,
+                events = [...store.getState().events],
+                eventsToSet;
             
-            dataToSend.userID = 3;
-            dataToSend.eventID = eventID;
-            dataToSend.amount = parseInt(e.target.childNodes[1].value, 10);
-            dataToSend.description = e.target.childNodes[0].value;
-            dataToSend.date = new Date();
+            dataToSend = {
+                userID : 3,
+                eventID : eventID,
+                amount : parseInt(e.target.childNodes[1].value, 10),
+                description : e.target.childNodes[0].value,
+                donationDate: new Date()
+            };
             
-            console.log('dts', dataToSend);
+            donationsToSet = [...donations, dataToSend];
+            store.dispatch(addDonation(donationsToSet));
+            
+            let eventsFiltered = [...events.filter(el => el.eventID === eventID)][0];
+
+            eventsToSet = {
+                eventID: eventID,
+                eventDate: eventsFiltered.eventDate,
+                eventDescription : eventsFiltered.eventDescription,
+                totalAmount: countTotalAmount([...store.getState().donations].filter(el => el.eventID === eventID))
+            };
+
+            eventDataToSend = [...events.filter(el => el.eventID !== eventID), eventsToSet];
+            
+            store.dispatch(setEventTotalAmount(eventDataToSend));
+
+            console.log('st2', store.getState().events);
             
 
             // fetch('/', {
@@ -53,8 +78,9 @@ class SingleEvent extends Component {
             eventTemp = eventDonations.map(el => el.userID),
             eventUsers = eventTemp.filter((el, index) => eventTemp.indexOf(el) === index);
         
-        console.log('users', users);
-        console.log('eventUsers', eventUsers);
+        // console.log('users', users);
+        // console.log('eventUsers', eventUsers);
+        
         
         return (
             <div className="event-detailed">
@@ -83,13 +109,13 @@ class SingleEvent extends Component {
                     <div className="users-balance__list">
                         {eventUsers.map((el, i) => 
                             <UserBalance key={i}
-                                         userBalance={countUserBalance(el, eventUsers.length, eventInfo.totalAmount, eventDonations)}
+                                         userBalance={countUserBalance(el, eventUsers.length, countTotalAmount(eventDonations), eventDonations)}
                                          userName={users.filter(user => user.id === el)[0].name}
                             />
                         )}
                     </div>
                     <div className="users-balance__total">
-                        <p>Total: <strong>{eventInfo.totalAmount}</strong> грн</p>
+                        <p>Total: <strong>{countTotalAmount(eventDonations, eventUsers.length, eventInfo.totalAmount)}</strong> грн</p>
                     </div>
                 </div>
             </div>
