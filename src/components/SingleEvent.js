@@ -18,13 +18,15 @@ const mapDispatchToProps = function (dispatch) {
         eventDonate: function (eventID, e) {
             e.preventDefault();
             
-            
             let dataToSend,
                 eventDataToSend,
                 donations = store.getState().donations,
                 donationsToSet,
                 events = [...store.getState().events],
-                eventsToSet;
+                eventsToSet,
+                eventDonations = [...donations].filter(el => el.eventID === eventID),
+                eventTemp = eventDonations.map(el => el.userID),
+                eventUsers = eventTemp.filter((el, index) => eventTemp.indexOf(el) === index);
             
             dataToSend = {
                 userID : 3,
@@ -35,7 +37,20 @@ const mapDispatchToProps = function (dispatch) {
             };
             
             donationsToSet = [...donations, dataToSend];
-            store.dispatch(addDonation(donationsToSet));
+
+            function setStorageTotalAmount() {
+                return new Promise((resolve) => {
+                    store.dispatch(addDonation(donationsToSet));
+                    resolve();
+                })
+            }
+
+            setStorageTotalAmount().then(() => {
+                store.dispatch(setEventTotalAmount(eventDataToSend));
+                localStorage.setItem('donations', JSON.stringify(store.getState().donations));
+            }).then(() => {
+                localStorage.setItem('events', JSON.stringify(store.getState().events));
+            });
             
             let eventsFiltered = [...events.filter(el => el.eventID === eventID)][0];
 
@@ -47,11 +62,6 @@ const mapDispatchToProps = function (dispatch) {
             };
 
             eventDataToSend = [...events.filter(el => el.eventID !== eventID), eventsToSet];
-            
-            store.dispatch(setEventTotalAmount(eventDataToSend));
-
-            console.log('st2', store.getState().events);
-            
 
             // fetch('/', {
             //     method: 'POST',
@@ -78,10 +88,6 @@ class SingleEvent extends Component {
             eventTemp = eventDonations.map(el => el.userID),
             eventUsers = eventTemp.filter((el, index) => eventTemp.indexOf(el) === index);
         
-        // console.log('users', users);
-        // console.log('eventUsers', eventUsers);
-        
-        
         return (
             <div className="event-detailed">
                 <div className="event-detailed__title">
@@ -97,7 +103,7 @@ class SingleEvent extends Component {
                                             userName={users.filter(user => user.id === el.userID)[0].name}
                             /> 
                         )}
-                        
+                         
                     </div>
                 </div>
                 <div className="users-balance">
@@ -115,7 +121,7 @@ class SingleEvent extends Component {
                         )}
                     </div>
                     <div className="users-balance__total">
-                        <p>Total: <strong>{countTotalAmount(eventDonations, eventUsers.length, eventInfo.totalAmount)}</strong> грн</p>
+                        <p>Total: <strong>{countTotalAmount(eventDonations)}</strong> грн</p>
                     </div>
                 </div>
             </div>

@@ -7,10 +7,13 @@ import store from './store/store'
 
 import registerServiceWorker from './registerServiceWorker'
 
-ReactDOM.render(
-    <Provider store={store}>
-        <PageRouter />
-    </Provider>,
-    document.getElementById('root'));
-registerServiceWorker();
+export function RenderApp() {
+    ReactDOM.render(
+        <Provider store={store}>
+            <PageRouter />
+        </Provider>,
+        document.getElementById('root'));
+    registerServiceWorker();
+}
+
 
