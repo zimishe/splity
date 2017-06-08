@@ -6,6 +6,8 @@ import { connect } from 'react-redux'
 import DonateForm from './forms/donate'
 import SingleActivity from './support/singleActivity'
 import UserBalance from './userBalance'
+import RecentActivities from './recentActivities/recentActivities'
+import UsersBalance from './usersBalance/usersBalance'
 
 import { getShortDate } from './../actions/formatDate'
 import { countUserBalance, countTotalAmount } from './../actions/countUserBalance'
@@ -58,6 +60,7 @@ const mapDispatchToProps = function (dispatch) {
                 eventID: eventID,
                 eventDate: eventsFiltered.eventDate,
                 eventDescription : eventsFiltered.eventDescription,
+                eventUsers: [...eventUsers],
                 totalAmount: countTotalAmount([...store.getState().donations].filter(el => el.eventID === eventID))
             };
 
@@ -87,6 +90,8 @@ class SingleEvent extends Component {
             eventDonations = [...this.props.data.donations].filter(el => el.eventID === eventID),
             eventTemp = eventDonations.map(el => el.userID),
             eventUsers = eventTemp.filter((el, index) => eventTemp.indexOf(el) === index);
+            
+            console.log('eventusers', eventUsers);
         
         return (
             <div className="event-detailed">
@@ -94,36 +99,13 @@ class SingleEvent extends Component {
                     <p><strong>{eventInfo.eventDescription},</strong> {getShortDate(eventInfo.eventDate)}</p>
                 </div>
                 <DonateForm onSubmit={this.props.eventDonate.bind(this, eventID)} />
-                <div className="recent-activities">
-                    <h3>Recent Activities</h3>
-                    <div className="recent-activities__list">
-                        {eventDonations.map((el, i) => 
-                            <SingleActivity key={i}
-                                            data={el}
-                                            userName={users.filter(user => user.id === el.userID)[0].name}
-                            /> 
-                        )}
-                         
-                    </div>
-                </div>
-                <div className="users-balance">
-                    <h3>Users balance</h3>
-                    <div className="users-balance__caption">
-                        <h5>User</h5>
-                        <h5>Balance</h5>
-                    </div>
-                    <div className="users-balance__list">
-                        {eventUsers.map((el, i) => 
-                            <UserBalance key={i}
-                                         userBalance={countUserBalance(el, eventUsers.length, countTotalAmount(eventDonations), eventDonations)}
-                                         userName={users.filter(user => user.id === el)[0].name}
-                            />
-                        )}
-                    </div>
-                    <div className="users-balance__total">
-                        <p>Total: <strong>{countTotalAmount(eventDonations)}</strong> грн</p>
-                    </div>
-                </div>
+                
+                <RecentActivities eventDonations = {eventDonations}
+                                  users = {users} />
+                
+                <UsersBalance eventUsers = {eventUsers}
+                              eventDonations = {eventDonations}
+                              users = {users} />
             </div>
         )
     }

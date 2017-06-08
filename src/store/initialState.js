@@ -19,6 +19,7 @@ function checkData() {
                     eventID: 7,
                     eventDate: 'Tue May 30 2017 19:33:47 GMT+0300 (FLE Daylight Time)',
                     eventDescription: 'Цісар в п\'ятницю',
+                    eventUsers: [],
                     totalAmount: 0
                 },
 
@@ -26,6 +27,7 @@ function checkData() {
                     eventID: 13,
                     eventDate: 'Tue May 31 2017 19:33:47 GMT+0300 (FLE Daylight Time)',
                     eventDescription: 'Кам\'янець',
+                    eventUsers: [],
                     totalAmount: 0
                 }
             ]
@@ -38,23 +40,23 @@ function checkData() {
                 {
                     id: 1,
                     name: 'Євген',
-                    balance: 230
+                    balance: 0
                 },
                 {
                     id: 2,
                     name: 'Таня',
-                    balance: -10
+                    balance: 0
                 },
                 {
                     id: 3,
                     name: 'Олексій',
-                    balance: 400
+                    balance: 0
                 },
 
                 {
                     id: 7,
                     name: 'Donald Trump',
-                    balance: 100
+                    balance: 0
                 }
             ]
         }
