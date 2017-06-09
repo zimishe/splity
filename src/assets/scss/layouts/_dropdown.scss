@@ -226,3 +226,85 @@ h1, h2, h3, h4 {
 .user-balance__item--clear {
     background: #8BC34A;
 }
+
+.add-event {
+    display: flex;
+    flex-basis: 100%;
+    position: relative;
+    justify-content: flex-start;
+}
+
+.add-event__form {
+    visibility: hidden;
+    margin-left: 10px;
+    transition: all .2s ease;
+    transform: translate(200px, 0);
+    padding: 10px 15px;
+    background: #fff;
+    display: flex;
+    flex-wrap: wrap;
+    position: absolute;
+    left: 140px;
+    top: 0;
+    box-shadow: 0 0 15px 3px #FFAB91;
+    
+    &.add-event__form--visible {
+        visibility: visible;
+        transform: translate(0, 0);
+    }
+    
+    label {
+        flex-basis: 100%;
+        display: flex;
+        align-items: center;
+        margin-bottom: 15px;
+        
+        input {
+            height: 36px;
+            border: 1px solid #ccc;
+            padding: 0 10px;
+            font: rem(14px, 36px) $regular;
+            color: #000;
+            @include placeholder();
+            margin-left: 10px;
+            width: 100%;
+        }
+    }
+}
+
+.add-event__toggle {
+    background: #78909C;
+    display: flex;
+    height: 40px;
+    padding: 0 15px;
+    font: rem(14px, 16px) $regular;
+    text-transform: uppercase;
+    color: #fff;
+    transition: all .2s ease;
+    
+    &:hover {
+        cursor: pointer;
+        background: #455A64;
+    }
+}
+
+.add-event__form__controls {
+    flex-basis: 100%;
+    display: flex;
+    justify-content: flex-end;
+    
+    button {
+        height: 36px;
+        padding: 0 15px;
+        background: #0288D1;
+        font: rem(14px, 16px) $regular;
+        color: #fff;
+        text-transform: uppercase;
+        transition: all .2s ease;
+        
+        &:hover {
+            cursor: pointer;
+            background: #01579B;
+        }
+    }
+}

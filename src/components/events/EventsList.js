@@ -4,6 +4,8 @@
 
 import React, { Component } from 'react'
 import EventCard from './eventCard'
+import AddEventForm from './../forms/addEvent'
+
 import store from './../../store/store'
 
 import { withRouter } from 'react-router'
@@ -31,6 +33,8 @@ class EventsList extends Component {
 
         return  (
             <div className="events__list">
+                <AddEventForm />
+                
                 {
                     events.map((el, i) =>
                         <EventCard key={i}
