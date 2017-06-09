@@ -5,9 +5,9 @@
 import React, { Component } from 'react'
 import { Route, Switch } from 'react-router-dom'
 
-import SingleEvent from './SingleEvent'
-import UserCabinet from './userCabinet'
-import EventsList from './EventsList'
+import SingleEvent from './events/SingleEvent'
+import UserCabinet from './userCabinet/userCabinet'
+import EventsList from './events/EventsList'
 
 class Main extends Component {
     render() {

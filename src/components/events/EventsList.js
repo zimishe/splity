@@ -4,7 +4,7 @@
 
 import React, { Component } from 'react'
 import EventCard from './eventCard'
-import store from './../store/store'
+import store from './../../store/store'
 
 import { withRouter } from 'react-router'
 import { connect } from 'react-redux'
@@ -47,3 +47,4 @@ export default withRouter(connect(
     mapStateToProps,
     mapDispatchToProps
 )(EventsList))
+

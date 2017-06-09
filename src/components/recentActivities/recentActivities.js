@@ -4,7 +4,7 @@
 
 import React from 'react'
 
-import SingleActivity from './../support/singleActivity'
+import SingleActivity from './singleActivity'
 
 const RecentActivities = ({ eventDonations, users }) => {
     return (

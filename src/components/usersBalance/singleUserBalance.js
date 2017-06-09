@@ -4,7 +4,7 @@
 
 import React from 'react'
 
-const UserBalance = ({userBalance, userName}) => {
+const SingleUserBalance = ({userBalance, userName}) => {
     function checkBalance(userBalance) {
         if (userBalance < 0) {
             return 'user-balance__item user-balance__item--in-debt'
@@ -27,4 +27,4 @@ const UserBalance = ({userBalance, userName}) => {
     )
 };
 
-export default UserBalance
+export default SingleUserBalance

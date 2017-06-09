@@ -4,7 +4,7 @@
 // eslint-disable-next-line
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
-import { getShortDate } from './../actions/formatDate'
+import { getShortDate } from './../../actions/formatDate'
 
 const EventCard = ({props}) => {
     let url = 'event/'+props.eventID;

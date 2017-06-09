@@ -4,7 +4,7 @@
 
 import React from 'react'
 
-import UserBalance from './../userBalance'
+import SingleUserBalance from './singleUserBalance'
 
 import { countUserBalance, countTotalAmount } from './../../actions/countUserBalance'
 
@@ -18,7 +18,7 @@ const UsersBalance = ({ eventUsers, eventDonations, users }) => {
             </div>
             <div className="users-balance__list">
                 {eventUsers.map((el, i) =>
-                    <UserBalance key={i}
+                    <SingleUserBalance key={i}
                                  userBalance={countUserBalance(el, eventUsers.length, countTotalAmount(eventDonations), eventDonations)}
                                  userName={users.filter(user => user.id === el)[0].name}
                     />

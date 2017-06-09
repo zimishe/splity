@@ -1,18 +1,16 @@
 import React, { Component } from 'react'
-import store from './../store/store'
+import store from './../../store/store'
 import { withRouter } from 'react-router'
 import { connect } from 'react-redux'
 
-import DonateForm from './forms/donate'
-import SingleActivity from './support/singleActivity'
-import UserBalance from './userBalance'
-import RecentActivities from './recentActivities/recentActivities'
-import UsersBalance from './usersBalance/usersBalance'
+import DonateForm from './../forms/donate'
+import RecentActivities from './../recentActivities/recentActivities'
+import UsersBalance from './../usersBalance/usersBalance'
 
-import { getShortDate } from './../actions/formatDate'
-import { countUserBalance, countTotalAmount } from './../actions/countUserBalance'
-import { addDonation } from './../actions/addDonation'
-import { setEventTotalAmount } from './../actions/setEventTotalAmount'
+import { getShortDate } from './../../actions/formatDate'
+import { countTotalAmount } from './../../actions/countUserBalance'
+import { addDonation } from './../../actions/addDonation'
+import { setEventTotalAmount } from './../../actions/setEventTotalAmount'
 
 const mapDispatchToProps = function (dispatch) {
     return {
