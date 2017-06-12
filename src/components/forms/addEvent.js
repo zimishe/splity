@@ -33,7 +33,7 @@ class AddEventForm extends Component {
                         <span>Опис:</span>
                         <input type="text" placeholder="Опис події"/>
                     </label>
-                    <AddUserForm />
+                    <AddUserForm users={this.props.users} />
                     <div className="add-event__form__controls">
                         <button>Створити</button>
                     </div>

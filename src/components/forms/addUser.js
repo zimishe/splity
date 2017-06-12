@@ -3,12 +3,13 @@
  */
 
 import React, { Component } from 'react'
+import Dropdown from './../dropdown/container'
 
 class AddUserForm extends Component {
     render() {
         return (
             <div className="add-user">
-                <p>add users</p>
+                <Dropdown users={this.props.users} />
             </div>
         )
     }
