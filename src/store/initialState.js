@@ -3,8 +3,6 @@
  */
 import { RenderApp } from './../index'
 
-console.log('eventsStorage', JSON.parse(localStorage.getItem('events')));
-
 let events = localStorage.getItem('events'),
     users = localStorage.getItem('users'),
     donations = localStorage.getItem('donations'),
@@ -20,7 +18,18 @@ function checkData() {
                     eventID: 7,
                     eventDate: 'Tue May 30 2017 19:33:47 GMT+0300 (FLE Daylight Time)',
                     eventDescription: 'Цісар в п\'ятницю',
-                    eventUsers: [],
+                    eventUsers: [
+                        {
+                            id: 1,
+                            name: 'Євген',
+                            balance: 0
+                        },
+                        {
+                            id: 3,
+                            name: 'Олексій',
+                            balance: 0
+                        }
+                    ],
                     totalAmount: 0
                 },
 
@@ -28,7 +37,18 @@ function checkData() {
                     eventID: 13,
                     eventDate: 'Tue May 31 2017 19:33:47 GMT+0300 (FLE Daylight Time)',
                     eventDescription: 'Кам\'янець',
-                    eventUsers: [],
+                    eventUsers: [
+                        {
+                            id: 1,
+                            name: 'Євген',
+                            balance: 0
+                        },
+                        {
+                            id: 2,
+                            name: 'Таня',
+                            balance: 0
+                        }
+                    ],
                     totalAmount: 0
                 }
             ]

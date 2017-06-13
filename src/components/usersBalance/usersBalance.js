@@ -20,7 +20,7 @@ const UsersBalance = ({ eventUsers, eventDonations, users }) => {
                 {eventUsers.map((el, i) =>
                     <SingleUserBalance key={i}
                                  userBalance={countUserBalance(el, eventUsers.length, countTotalAmount(eventDonations), eventDonations)}
-                                 userName={users.filter(user => user.id === el)[0].name}
+                                 userName={users.filter(user => user.id === el.id)[0].name}
                     />
                 )}
             </div>

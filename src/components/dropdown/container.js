@@ -16,6 +16,7 @@ class DropDown extends Component {
         let users = this.props.users,
             sessionUsers = JSON.parse(sessionStorage.getItem('pickedUsers')),
             storePickedUsers = store.getState().pickedUsers,
+            // eslint-disable-next-line
             pickedUsers;
         
         
@@ -40,10 +41,11 @@ class DropDown extends Component {
             <div className="dropdown">
                 <div className="dropdown__values">
                     {(
-                        getSelectedUsers().length > 0) &&
+                        getSelectedUsers().length > 0) ?
                         getSelectedUsers().map((el, index) => 
                         <span key={index}>{el.name}</span>
-                    )}
+                    ) :
+                        <span>Нікого не вибрано</span>}
                 </div>
                 <ul className="dropdown__list">
                     {users.map((el, index) =>

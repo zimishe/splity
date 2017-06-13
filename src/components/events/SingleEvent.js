@@ -24,12 +24,16 @@ const mapDispatchToProps = function (dispatch) {
                 donationsToSet,
                 events = [...store.getState().events],
                 eventsToSet,
+                // eslint-disable-next-line
                 eventDonations = [...donations].filter(el => el.eventID === eventID),
-                eventTemp = eventDonations.map(el => el.userID),
-                eventUsers = eventTemp.filter((el, index) => eventTemp.indexOf(el) === index);
-            
+                // eventTemp = eventDonations.map(el => el.userID),
+                eventUsers = [...events].filter(el => el.eventID === eventID)[0].eventUsers;
+                // eventUsers = eventTemp.filter((el, index) => eventTemp.indexOf(el) === index);
+
+            // console.log('users1', eventUsers);
+
             dataToSend = {
-                userID : 3,
+                userID : 1,
                 eventID : eventID,
                 amount : parseInt(e.target.childNodes[1].value, 10),
                 description : e.target.childNodes[0].value,
@@ -84,10 +88,12 @@ class SingleEvent extends Component {
     render() {
         let eventID = parseInt(this.props.match.params.number, 10),
             users = [...this.props.data.users],
+            events = [...store.getState().events],
             eventInfo = [...this.props.data.events].filter(el => el.eventID === eventID)[0],
             eventDonations = [...this.props.data.donations].filter(el => el.eventID === eventID),
-            eventTemp = eventDonations.map(el => el.userID),
-            eventUsers = eventTemp.filter((el, index) => eventTemp.indexOf(el) === index);
+            eventUsers = [...events].filter(el => el.eventID === eventID)[0].eventUsers;
+
+        console.log('event users', events);
         
         return (
             <div className="event-detailed">
@@ -95,7 +101,7 @@ class SingleEvent extends Component {
                     <p>
                         <strong>
                             {(eventInfo.eventDescription !== '') ? eventInfo.eventDescription : 'без опису :('},
-                        </strong> 
+                        </strong>
                         {getShortDate(eventInfo.eventDate)}</p>
                 </div>
                 <DonateForm onSubmit={this.props.eventDonate.bind(this, eventID)} />
