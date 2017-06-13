@@ -6,7 +6,7 @@ import store from './../store/store'
 
 import { addEvent } from './../actions/actionCreators/addEvent'
 
-export function addUser(e, date, description) {
+export function addEventData(e, date, description) {
     e.preventDefault();
 
     let pickedUsers = JSON.parse(sessionStorage.getItem('pickedUsers')),
@@ -31,4 +31,10 @@ export function addUser(e, date, description) {
     };
     
     store.dispatch(addEvent([...events, dataToAdd]));
+
+    let form = document.querySelector('.add-event__form');
+
+    if (form !== null) {
+        form.classList.remove('add-event__form--visible');
+    }
 }

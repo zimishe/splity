@@ -7,7 +7,8 @@ console.log('eventsStorage', JSON.parse(localStorage.getItem('events')));
 
 let events = localStorage.getItem('events'),
     users = localStorage.getItem('users'),
-    donations = localStorage.getItem('donations');
+    donations = localStorage.getItem('donations'),
+    pickedUsers = sessionStorage.getItem('pickedUsers');
 
 function checkData() {
     return new Promise((resolve) => {
@@ -99,6 +100,12 @@ function checkData() {
             ]
         }
         
+        if (pickedUsers !== null) {
+            pickedUsers = JSON.parse(pickedUsers);
+        }   else {
+            pickedUsers = [];
+        }
+        
         resolve()
     })
 }
@@ -110,7 +117,8 @@ checkData().then(() => {
 const initialState = {
     users: users,
     events: events,
-    donations: donations
+    donations: donations,
+    pickedUsers: pickedUsers
 };
 
 export default initialState

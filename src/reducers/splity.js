@@ -10,19 +10,29 @@ let reducer = function reducer(state = initialState, action) {
         case 'DONATION_ADDED' : return {
             users: state.users,
             events: state.events,
-            donations: action.donations
+            donations: action.donations,
+            pickedUsers: state.pickedUsers
         };
         
         case 'EVENT_TOTAL_AMOUNT_CHANGED' : return {
             users: state.users,
             events: action.events,
-            donations: state.donations
+            donations: state.donations,
+            pickedUsers: state.pickedUsers
         };
         
         case 'EVENT_ADDED' : return {
             users: state.users,
             events: action.events,
-            donations: state.donations
+            donations: state.donations,
+            pickedUsers: state.pickedUsers
+        }; 
+        
+        case 'PICKED_USERS' : return {
+            users: state.users,
+            events: state.events,
+            donations: state.donations,
+            pickedUsers: action.pickedUsers
         };
        
         default : return state

@@ -88,13 +88,15 @@ class SingleEvent extends Component {
             eventDonations = [...this.props.data.donations].filter(el => el.eventID === eventID),
             eventTemp = eventDonations.map(el => el.userID),
             eventUsers = eventTemp.filter((el, index) => eventTemp.indexOf(el) === index);
-            
-            console.log('eventusers', eventUsers);
         
         return (
             <div className="event-detailed">
                 <div className="event-detailed__title">
-                    <p><strong>{eventInfo.eventDescription},</strong> {getShortDate(eventInfo.eventDate)}</p>
+                    <p>
+                        <strong>
+                            {(eventInfo.eventDescription !== '') ? eventInfo.eventDescription : 'без опису :('},
+                        </strong> 
+                        {getShortDate(eventInfo.eventDate)}</p>
                 </div>
                 <DonateForm onSubmit={this.props.eventDonate.bind(this, eventID)} />
                 

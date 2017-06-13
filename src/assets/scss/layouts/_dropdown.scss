@@ -236,8 +236,9 @@ h1, h2, h3, h4 {
 
 .add-event__form {
     visibility: hidden;
+    opacity: 0;
     margin-left: 10px;
-    transition: all .2s ease;
+    transition: transform .2s ease, opacity .2s ease;
     transform: translate(200px, 0);
     padding: 10px 15px;
     background: #fff;
@@ -250,6 +251,7 @@ h1, h2, h3, h4 {
     
     &.add-event__form--visible {
         visibility: visible;
+        opacity: 1;
         transform: translate(0, 0);
     }
     
@@ -319,14 +321,15 @@ h1, h2, h3, h4 {
 }
 
 .dropdown__list__item__remove {
-    visibility: hidden;
+    opacity: 0;
     width: 30px;
     height: 29px;
     background: #ccc;
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: all .2s ease;
+    margin-left: 10px;
+    transition: opacity .2s ease, background .2s ease;
 
     &:hover {
         background: #232323;
@@ -347,7 +350,34 @@ h1, h2, h3, h4 {
     
     &.dropdown__list__item--selected {
         .dropdown__list__item__remove {
-            visibility: visible;
+            opacity: 1;
+        }
+    }
+}
+
+.dropdown__values {
+    padding: 5px;
+    background: #E3F2FD;
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    
+    span {
+        position: relative;
+        display: inline-block;
+        margin-right: 5px;
+        
+        &:after {
+            content: ',';
+            font: rem(15px, 15px) $regular;
+            color: #000;
+        }
+        
+        
+        &:nth-last-of-type(1) {
+            &:after {
+                display: none;
+            }
         }
     }
 }

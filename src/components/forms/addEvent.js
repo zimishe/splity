@@ -6,14 +6,22 @@ import React, { Component } from 'react'
 import Datetime from 'react-datetime'
 
 import AddUserForm from './addUser'
-import { addUser } from './../../actions/addUser'
+import { addEventData } from './../../actions/addEvent'
 
 class AddEventForm extends Component {
     createRoom(e) {
         let date = new Date(document.getElementById('new_event_date').value),
             description = document.getElementById('new_event_description').value;
+
+        addEventData(e, date, description)
+    }
+    
+    toggleForm() {
+        let form = document.querySelector('.add-event__form');
         
-        addUser(e, date, description)
+        if (form !== null) {
+            form.classList.toggle('add-event__form--visible');
+        }
     }
     
     render() {
@@ -27,8 +35,8 @@ class AddEventForm extends Component {
         
         return (
             <div className="add-event">
-                <button className="add-event__toggle">Додати подію</button>
-                <form className="add-event__form add-event__form--visible"
+                <button className="add-event__toggle" onClick={this.toggleForm}>Додати подію</button>
+                <form className="add-event__form"
                       onSubmit={this.createRoom}
                 >
                     <label>
@@ -45,6 +53,7 @@ class AddEventForm extends Component {
                         <input type="text"
                                placeholder="Опис події"
                                id="new_event_description" 
+                               required
                         />
                     </label>
                     <AddUserForm users={this.props.users} />

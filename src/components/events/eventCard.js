@@ -13,7 +13,7 @@ const EventCard = ({props}) => {
         <div className="event">
             <Link to={url} className="event__info">
                 <h3>{getShortDate(props.eventDate)}</h3>
-                <h4>{props.eventDescription}</h4>
+                <h4>{(props.eventDescription !== '') ? props.eventDescription : 'Без опису :('}</h4>
                 <p>Витрачено: <strong>{props.totalAmount}</strong> грн.</p>
             </Link>
         </div>

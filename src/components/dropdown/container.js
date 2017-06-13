@@ -5,6 +5,7 @@
 import React, { Component } from 'react'
 import DropdownItem from './dropdownItem'
 import { setDropdownValue } from './../../actions/setDropdownValue'
+import store from './../../store/store'
 
 class DropDown extends Component {
     setDropdownValue(e) {
@@ -14,15 +15,36 @@ class DropDown extends Component {
     render() {
         let users = this.props.users,
             sessionUsers = JSON.parse(sessionStorage.getItem('pickedUsers')),
+            storePickedUsers = store.getState().pickedUsers,
             pickedUsers;
+        
+        
+        function getSelectedUsers() {
+            let usersToShow = [];
 
+            storePickedUsers.forEach(el => {
+                let user = users.filter(user => user.id === el)[0];
+
+                usersToShow.push(user);
+            });
+
+            return usersToShow
+        }
+        
         if (sessionUsers !== null) {
             pickedUsers = sessionUsers.filter((el, index, arr) => arr.indexOf(el) === index);
         }
         
+        
         return (
             <div className="dropdown">
-                <input type="text" disabled name="dropdown__value" id="dropdown__value" />
+                <div className="dropdown__values">
+                    {(
+                        getSelectedUsers().length > 0) &&
+                        getSelectedUsers().map((el, index) => 
+                        <span key={index}>{el.name}</span>
+                    )}
+                </div>
                 <ul className="dropdown__list">
                     {users.map((el, index) =>
                         <DropdownItem key={index}
