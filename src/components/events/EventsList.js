@@ -33,7 +33,7 @@ class EventsList extends Component {
 
         return  (
             <div className="events__list">
-                <AddEventForm users={this.props.data.users} />
+            
                 
                 {
                     events.map((el, i) =>
