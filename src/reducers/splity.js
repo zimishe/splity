@@ -18,6 +18,12 @@ let reducer = function reducer(state = initialState, action) {
             events: action.events,
             donations: state.donations
         };
+        
+        case 'EVENT_ADDED' : return {
+            users: state.users,
+            events: action.events,
+            donations: state.donations
+        };
        
         default : return state
     }
