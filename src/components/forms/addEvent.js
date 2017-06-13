@@ -6,8 +6,16 @@ import React, { Component } from 'react'
 import Datetime from 'react-datetime'
 
 import AddUserForm from './addUser'
+import { addUser } from './../../actions/addUser'
 
 class AddEventForm extends Component {
+    createRoom(e) {
+        let date = new Date(document.getElementById('new_event_date').value),
+            description = document.getElementById('new_event_description').value;
+        
+        addUser(e, date, description)
+    }
+    
     render() {
         let inputFromProps = {
                 placeholder : 'Дата:',
@@ -16,10 +24,13 @@ class AddEventForm extends Component {
                 id: 'new_event_date'
             };
         
+        
         return (
             <div className="add-event">
                 <button className="add-event__toggle">Додати подію</button>
-                <form className="add-event__form add-event__form--visible">
+                <form className="add-event__form add-event__form--visible"
+                      onSubmit={this.createRoom}
+                >
                     <label>
                         <span>Дата:</span>
                         <Datetime inputProps={inputFromProps}
@@ -31,7 +42,10 @@ class AddEventForm extends Component {
                     </label>
                     <label>
                         <span>Опис:</span>
-                        <input type="text" placeholder="Опис події"/>
+                        <input type="text"
+                               placeholder="Опис події"
+                               id="new_event_description" 
+                        />
                     </label>
                     <AddUserForm users={this.props.users} />
                     <div className="add-event__form__controls">
