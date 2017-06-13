@@ -4,46 +4,25 @@
 
 import React, { Component } from 'react'
 import DropdownItem from './dropdownItem'
-
+import { setDropdownValue } from './../../actions/setDropdownValue'
 
 class DropDown extends Component {
-    constructor(props) {
-        super(props);
-        
-        this.state = {
-            pickedUsers : 1
-        };
-    }
-    
     setDropdownValue(e) {
-        if (e.target.classList.contains('selected')) {
-            e.target.classList.remove('selected');
-        }   else {
-            let valueToSet = [];
-
-            let pickedUsersSession = sessionStorage.getItem('pickedUsers');
-
-            if (pickedUsersSession !== null) {
-                valueToSet = [...JSON.parse(pickedUsersSession), this.props.userID];
-            }   else {
-                valueToSet.push(this.props.userID);
-            }
-
-            sessionStorage.setItem('pickedUsers', JSON.stringify(valueToSet));
-            e.target.classList.add('selected');
-        }
-        
-        console.log('picked', JSON.parse(sessionStorage.getItem('pickedUsers')));
+        setDropdownValue(e, this.props);
     }
     
     render() {
-        let users = this.props.users;
-        
-        console.log('ts', this.props);
+        let users = this.props.users,
+            sessionUsers = JSON.parse(sessionStorage.getItem('pickedUsers')),
+            pickedUsers;
+
+        if (sessionUsers !== null) {
+            pickedUsers = sessionUsers.filter((el, index, arr) => arr.indexOf(el) === index);
+        }
         
         return (
             <div className="dropdown">
-                <input type="text" disabled name="dropdown__value" id="dropdown__value" value={this.state.pickedUsers} />
+                <input type="text" disabled name="dropdown__value" id="dropdown__value" />
                 <ul className="dropdown__list">
                     {users.map((el, index) =>
                         <DropdownItem key={index}

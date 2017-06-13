@@ -308,3 +308,46 @@ h1, h2, h3, h4 {
         }
     }
 }
+
+.dropdown {
+    input {
+        height: 30px;
+        background: #E0F7FA;
+        font: rem(15px, 28px) $regular;
+        padding-left: 5px;
+    }
+}
+
+.dropdown__list__item__remove {
+    visibility: hidden;
+    width: 30px;
+    height: 29px;
+    background: #ccc;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all .2s ease;
+
+    &:hover {
+        background: #232323;
+        color: #fff;
+    }
+}
+
+.dropdown__list__item {
+    display: flex;
+    justify-content: space-between;
+    height: 30px;
+    padding-left: 5px;
+    border-bottom: 1px solid #000;
+    font: rem(15px, 28px) $regular;
+    color: #000;
+    transition: all .2s ease;
+    cursor: pointer;
+    
+    &.dropdown__list__item--selected {
+        .dropdown__list__item__remove {
+            visibility: visible;
+        }
+    }
+}
