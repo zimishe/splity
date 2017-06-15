@@ -6,11 +6,12 @@ import { connect } from 'react-redux'
 import DonateForm from './../forms/donate'
 import RecentActivities from './../recentActivities/recentActivities'
 import UsersBalance from './../usersBalance/usersBalance'
+import AddUserForm from './../forms/addUser'
 
 import { getShortDate } from './../../actions/formatDate'
 import { countTotalAmount } from './../../actions/countUserBalance'
 import { addDonation } from './../../actions/addDonation'
-import { setEventTotalAmount } from './../../actions/setEventTotalAmount'
+import { updateEventData } from './../../actions/updateEventData'
 
 const mapDispatchToProps = function (dispatch) {
     return {
@@ -30,8 +31,6 @@ const mapDispatchToProps = function (dispatch) {
                 eventUsers = [...events].filter(el => el.eventID === eventID)[0].eventUsers;
                 // eventUsers = eventTemp.filter((el, index) => eventTemp.indexOf(el) === index);
 
-            // console.log('users1', eventUsers);
-
             dataToSend = {
                 userID : 1,
                 eventID : eventID,
@@ -50,7 +49,7 @@ const mapDispatchToProps = function (dispatch) {
             }
 
             setStorageTotalAmount().then(() => {
-                store.dispatch(setEventTotalAmount(eventDataToSend));
+                store.dispatch(updateEventData(eventDataToSend));
                 localStorage.setItem('donations', JSON.stringify(store.getState().donations));
             }).then(() => {
                 localStorage.setItem('events', JSON.stringify(store.getState().events));
@@ -92,8 +91,7 @@ class SingleEvent extends Component {
             eventInfo = [...this.props.data.events].filter(el => el.eventID === eventID)[0],
             eventDonations = [...this.props.data.donations].filter(el => el.eventID === eventID),
             eventUsers = [...events].filter(el => el.eventID === eventID)[0].eventUsers;
-
-        console.log('event users', events);
+        
         
         return (
             <div className="event-detailed">
@@ -105,6 +103,9 @@ class SingleEvent extends Component {
                         {getShortDate(eventInfo.eventDate)}</p>
                 </div>
                 <DonateForm onSubmit={this.props.eventDonate.bind(this, eventID)} />
+                <AddUserForm users={users}
+                             eventID={eventID}
+                />
                 
                 <RecentActivities eventDonations = {eventDonations}
                                   users = {users} />

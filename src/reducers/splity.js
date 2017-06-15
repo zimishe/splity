@@ -14,7 +14,7 @@ let reducer = function reducer(state = initialState, action) {
             pickedUsers: state.pickedUsers
         };
         
-        case 'EVENT_TOTAL_AMOUNT_CHANGED' : return {
+        case 'UPDATE_EVENT_DATA' : return {
             users: state.users,
             events: action.events,
             donations: state.donations,

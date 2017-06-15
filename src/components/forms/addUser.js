@@ -9,7 +9,9 @@ class AddUserForm extends Component {
     render() {
         return (
             <div className="add-user">
-                <Dropdown users={this.props.users} />
+                <Dropdown users={this.props.users}
+                          eventID={this.props.eventID}
+                />
             </div>
         )
     }
