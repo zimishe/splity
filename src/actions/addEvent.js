@@ -39,6 +39,4 @@ export function addEventData(e, date, description) {
     if (form !== null) {
         form.classList.remove('add-event__form--visible');
     }
-
-    console.log('store ev', store.getState().events)
 }

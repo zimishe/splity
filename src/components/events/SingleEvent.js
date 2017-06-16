@@ -92,7 +92,6 @@ class SingleEvent extends Component {
             eventDonations = [...this.props.data.donations].filter(el => el.eventID === eventID),
             eventUsers = [...events].filter(el => el.eventID === eventID)[0].eventUsers;
         
-        
         return (
             <div className="event-detailed">
                 <div className="event-detailed__title">

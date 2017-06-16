@@ -9,8 +9,6 @@ class DropdownItem extends Component {
         let sessionUsers = JSON.parse(sessionStorage.getItem('pickedUsers')),
             pickedUser;
         
-        // console.log('tp', this.props);
-        
         if (sessionUsers !== null) {
             pickedUser = sessionUsers
                 .filter(el => el === this.props.userID)
@@ -27,7 +25,7 @@ class DropdownItem extends Component {
         
         return(
             <li className={checkSelected()}
-                onClick={this.props.setDropdownValue.bind(this)}>
+                onClick={this.props.updateDropdownData}>
                 {this.props.userName}
                 <a className="dropdown__list__item__remove">x</a>
             </li>
