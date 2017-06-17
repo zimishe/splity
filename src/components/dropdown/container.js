@@ -10,10 +10,6 @@ import store from './../../store/store'
 
 class DropDown extends Component {
     updateDropdownData(eventDataToSet, userID, e) {
-        // console.log('eventDataToSet', eventDataToSet);
-        // console.log('userID', userID);
-        // console.log('e', e);
-        //
         setDropdownValue(eventDataToSet, userID, e);
     }
     
@@ -65,14 +61,14 @@ class DropDown extends Component {
         
         return (
             <div className="dropdown">
-                {/*<div className="dropdown__values">*/}
-                    {/*{(*/}
-                        {/*getSelectedUsers().picked.length > 0) ?*/}
-                        {/*getSelectedUsers().picked.map((el, index) => */}
-                        {/*<span key={index}>{el.name}</span>*/}
-                    {/*) :*/}
-                        {/*<span>Нікого не вибрано</span>}*/}
-                {/*</div>*/}
+                <div className="dropdown__values">
+                    {(
+                        eventUsers.length > 0) ?
+                        eventUsers.map((el, index) => 
+                        <span key={index}>{el.name}</span>
+                    ) :
+                        <span>Нікого не вибрано</span>}
+                </div>
                 <ul className="dropdown__list">
                     {users.map((el, index) =>
                         <DropdownItem key={index}
