@@ -12,8 +12,6 @@ export function addEventData(e, date, description) {
     let pickedUsers = [...store.getState().pickedUsers],
         events = store.getState().events;
     
-    console.log('picked', pickedUsers);
-    
     let dataToAdd = {
         eventID: Math.floor(Math.random() * (10000 - 10)) + 10,
         eventDate: date,

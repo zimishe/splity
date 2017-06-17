@@ -3,17 +3,16 @@
  */
 
 import React, { Component } from 'react'
+import store from './../../store/store'
 
 class DropdownItem extends Component {
     render() {
-        let sessionUsers = JSON.parse(sessionStorage.getItem('pickedUsers')),
+        let storeUsers = store.getState().pickedUsers,
             pickedUser;
         
-        if (sessionUsers !== null) {
-            pickedUser = sessionUsers
-                .filter(el => el === this.props.userID)
-                .length;
-        }
+        pickedUser = storeUsers
+            .filter(el => el.id === this.props.userID)
+            .length;
         
         function checkSelected() {
             if ((pickedUser > 0) && (pickedUser !== null)) {

@@ -39,10 +39,18 @@ export function setDropdownValue(props, userID, e) {
     }
     
     if (props !== undefined) {
-        store.dispatch(updateEventData([...eventsToSet, getEventData(props.eventID, usersToSet)]));
+        if (usersToSet !== undefined) {
+            usersToSet = [...new Set(usersToSet)];
+            
+            store.dispatch(updateEventData([...eventsToSet, getEventData(props.eventID, usersToSet)]));    
+        }
+        
     }   else {
-        store.dispatch(setPickedUsers(pickedUsers));
+        
+        if (pickedUsers !== undefined) {
+            pickedUsers = [...new Set(pickedUsers)];
+            
+            store.dispatch(setPickedUsers(pickedUsers));    
+        }
     }
-    
-    console.log('picked users store', store.getState().pickedUsers);
 }
