@@ -9,24 +9,16 @@ import { addEvent } from './../actions/actionCreators/addEvent'
 export function addEventData(e, date, description) {
     e.preventDefault();
 
-    let pickedUsers = JSON.parse(sessionStorage.getItem('pickedUsers')),
-        storeUsers = store.getState().users,
-        events = store.getState().events,
-        usersToSend = [];
+    let pickedUsers = [...store.getState().pickedUsers],
+        events = store.getState().events;
     
-    if (pickedUsers.length > 0) {
-        pickedUsers.forEach(el => {
-            let user = storeUsers.filter(user => user.id === el)[0];
-            
-            usersToSend.push(user);
-        })
-    }
+    console.log('picked', pickedUsers);
     
     let dataToAdd = {
         eventID: Math.floor(Math.random() * (10000 - 10)) + 10,
         eventDate: date,
         eventDescription: description,
-        eventUsers: usersToSend,
+        eventUsers: pickedUsers,
         totalAmount: 0
     };
     

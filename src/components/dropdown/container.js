@@ -4,24 +4,27 @@
 
 import React, { Component } from 'react'
 import DropdownItem from './dropdownItem'
+import { getEventData } from './../../actions/getEventData'
 import { setDropdownValue } from './../../actions/setDropdownValue'
 import store from './../../store/store'
 
 class DropDown extends Component {
     updateDropdownData(eventDataToSet, userID, e) {
+        // console.log('eventDataToSet', eventDataToSet);
+        // console.log('userID', userID);
+        // console.log('e', e);
+        //
         setDropdownValue(eventDataToSet, userID, e);
     }
     
     render() {
         let users = this.props.users,
             sessionUsers = JSON.parse(sessionStorage.getItem('pickedUsers')),
-            storePickedUsers = store.getState().pickedUsers,
             eventID = this.props.eventID,
             // eslint-disable-next-line
             pickedUsers,
             eventUsers,
             eventDataToSet;
-            
         
         if (store.getState().events.filter(el => el.eventID === eventID).length > 0) {
             eventUsers = store.getState().events.filter(el => el.eventID === this.props.eventID)[0].eventUsers;
@@ -29,15 +32,16 @@ class DropDown extends Component {
             eventUsers = store.getState().users;
         }
         
+        // console.log('dropdown event users', eventUsers);
+        
         function setDropdownUsers(eventUsers) {
             let dropUsers = {};
 
             let usersToShow = [],
                 availableUsers = [];
 
-
-            storePickedUsers.forEach(el => {
-                let user = [...users].filter(user => user.id === el)[0];
+            eventUsers.forEach(el => {
+                let user = [...users].filter(user => user.id === el.id)[0];
                 usersToShow.push(user);
             });
 
@@ -54,20 +58,6 @@ class DropDown extends Component {
             
             return dropUsers
         }
-        
-        let event = [...store.getState().events].filter(el => el.eventID === eventID)[0];
-        
-        if (eventID !== undefined) {
-            eventDataToSet = {
-                eventID: eventID,
-                eventDate: event.eventDate,
-                eventDescription: event.eventDescription,
-                totalAmount: event.totalAmount,
-                eventUsers: setDropdownUsers(eventUsers).picked
-            };   
-        }
-            
-            // store.dispatch(updateEventData([...eventsToSet, eventDataToSet]));
         
         if (sessionUsers !== null) {
             pickedUsers = sessionUsers.filter((el, index, arr) => arr.indexOf(el) === index);
@@ -88,9 +78,9 @@ class DropDown extends Component {
                         <DropdownItem key={index}
                                       userID={el.id}
                                       userName={el.name}
-                                      updateDropdownData={this.updateDropdownData.bind(this, eventDataToSet, el.id)}
+                                      updateDropdownData={this.updateDropdownData.bind(this, getEventData(eventID, setDropdownUsers(eventUsers).picked), el.id)}
                                       availableUsers={setDropdownUsers(eventUsers).available}
-                                      eventDataToSet={eventDataToSet}
+                                      eventDataToSet={getEventData(eventID, setDropdownUsers(eventUsers).picked)}
                         />
                     )}
                 </ul>

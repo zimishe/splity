@@ -30,6 +30,8 @@ const mapDispatchToProps = function (dispatch) {
                 // eventTemp = eventDonations.map(el => el.userID),
                 eventUsers = [...events].filter(el => el.eventID === eventID)[0].eventUsers;
                 // eventUsers = eventTemp.filter((el, index) => eventTemp.indexOf(el) === index);
+            
+            
 
             dataToSend = {
                 userID : 1,
