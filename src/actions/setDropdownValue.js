@@ -53,4 +53,6 @@ export function setDropdownValue(props, userID, e) {
             store.dispatch(setPickedUsers(pickedUsers));    
         }
     }
+    
+    console.log('store', store.getState());
 }

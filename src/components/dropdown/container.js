@@ -13,14 +13,21 @@ class DropDown extends Component {
         setDropdownValue(eventDataToSet, userID, e);
     }
     
+    toggleDropdown() {
+        let list = document.querySelector('.dropdown__list');
+        
+        if (list !== null) {
+            list.classList.toggle('dropdown__list--opened');
+        }
+    }
+    
     render() {
         let users = this.props.users,
             sessionUsers = JSON.parse(sessionStorage.getItem('pickedUsers')),
             eventID = this.props.eventID,
             // eslint-disable-next-line
             pickedUsers,
-            eventUsers,
-            eventDataToSet;
+            eventUsers;
         
         if (store.getState().events.filter(el => el.eventID === eventID).length > 0) {
             eventUsers = store.getState().events.filter(el => el.eventID === this.props.eventID)[0].eventUsers;
@@ -61,7 +68,7 @@ class DropDown extends Component {
         
         return (
             <div className="dropdown">
-                <div className="dropdown__values">
+                <div className="dropdown__values" onClick={this.toggleDropdown}>
                     {(
                         eventUsers.length > 0) ?
                         eventUsers.map((el, index) => 
@@ -74,7 +81,10 @@ class DropDown extends Component {
                         <DropdownItem key={index}
                                       userID={el.id}
                                       userName={el.name}
-                                      updateDropdownData={this.updateDropdownData.bind(this, getEventData(eventID, setDropdownUsers(eventUsers).picked), el.id)}
+                                      updateDropdownData={this.updateDropdownData
+                                          .bind(this, 
+                                                getEventData(eventID, setDropdownUsers(eventUsers).picked),
+                                                el.id)}
                                       availableUsers={setDropdownUsers(eventUsers).available}
                                       eventDataToSet={getEventData(eventID, setDropdownUsers(eventUsers).picked)}
                         />
