@@ -11,6 +11,15 @@ import EventsList from './events/EventsList'
 
 class Main extends Component {
     render() {
+        fetch('http://localhost:3001/', {
+            method: 'GET'
+        }).then(response => {
+            response.json().then(data => {
+                console.log('data', data);
+            })
+        });
+
+
         return (
             <div className="events">
                 <Switch>
