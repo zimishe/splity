@@ -16,7 +16,7 @@ class Main extends Component {
         if (window.location.hostname === 'localhost') {
             URL = 'http://localhost:3001/';  
         }   else {
-            URL = 'https://api-splity.herokuapp.com/3001';
+            URL = 'https://api-splity.herokuapp.com/';
         }
         
         console.log('window.location.hostname', window.location.hostname);
