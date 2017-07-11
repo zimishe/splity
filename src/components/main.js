@@ -11,25 +11,6 @@ import EventsList from './events/EventsList'
 
 class Main extends Component {
     render() {
-        let URL;
-        
-        if (window.location.hostname === 'localhost') {
-            URL = 'http://localhost:3001/';  
-        }   else {
-            URL = 'https://api-splity.herokuapp.com/';
-        }
-        
-        console.log('window.location.hostname', window.location.hostname);
-        console.log('url', URL);
-        
-        fetch(URL, {
-            method: 'GET'
-        }).then(response => {
-            response.json().then(data => {
-                console.log('data', data);
-            })
-        });
-
         return (
             <div className="events">
                 <Switch>

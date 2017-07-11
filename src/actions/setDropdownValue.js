@@ -12,7 +12,7 @@ export function setDropdownValue(props, userID, e) {
         eventsToSet,
         usersToSet,
         pickedUsers = [...store.getState().pickedUsers],
-        userToAdd = [...store.getState().users].filter(el => el.id === userID)[0];
+        userToAdd = [...store.getState().users].filter(el => el._id === userID)[0];
     
     if (props !== undefined) {
         eventsToSet = [...store.getState().events].filter(el => el.eventID !== props.eventID);

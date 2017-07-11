@@ -44,14 +44,14 @@ class DropDown extends Component {
                 availableUsers = [];
 
             eventUsers.forEach(el => {
-                let user = [...users].filter(user => user.id === el.id)[0];
+                let user = [...users].filter(user => user.id === el._id)[0];
                 usersToShow.push(user);
             });
 
-            let evUsersInd = [...eventUsers].map(el => el.id);
+            let evUsersInd = [...eventUsers].map(el => el._id);
 
             [...users].forEach(el => {
-                if (![...evUsersInd].includes(el.id) && (!availableUsers.includes(el))) {
+                if (![...evUsersInd].includes(el._id) && (!availableUsers.includes(el))) {
                     availableUsers.push(el)
                 }
             });
