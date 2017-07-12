@@ -2,16 +2,9 @@
  * Created by eugene on 05/29/17.
  */
 import { RenderApp } from './../index'
+import BASE_URL from './../actions/getHost'
 
 let initialState = {};
-
-let BASE_URL;
-
-if (window.location.hostname === 'localhost') {
-    BASE_URL = 'http://localhost:3001/';
-}   else {
-    BASE_URL = 'https://api-splity.herokuapp.com/';
-}
 
 fetch(BASE_URL+'getInitialData', {
     method: 'GET'

@@ -4,6 +4,7 @@
 
 import store from './../store/store'
 
+import BASE_URL from './../actions/getHost'
 import { addEvent } from './../actions/actionCreators/addEvent'
 
 export function addEventData(e, date, description) {
@@ -13,7 +14,6 @@ export function addEventData(e, date, description) {
         events = store.getState().events;
     
     let dataToAdd = {
-        eventID: Math.floor(Math.random() * (10000 - 10)) + 10,
         eventDate: date,
         eventDescription: description,
         eventUsers: pickedUsers,
@@ -22,7 +22,14 @@ export function addEventData(e, date, description) {
     
     store.dispatch(addEvent([...events, dataToAdd]));
 
-    localStorage.setItem('events', JSON.stringify([...events, dataToAdd]));
+    fetch(BASE_URL+'addevent', {
+        method: 'post',
+        body: '228'
+    }).then(response => {
+        console.log('response', response);
+    });
+     
+    // localStorage.setItem('events', JSON.stringify([...events, dataToAdd]));
 
     let form = document.querySelector('.add-event__form');
 
