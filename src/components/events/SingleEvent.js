@@ -87,12 +87,12 @@ const mapStateToProps = function () {
 
 class SingleEvent extends Component {
     render() {
-        let eventID = parseInt(this.props.match.params.number, 10),
+        let eventID = this.props.match.params.number,
             users = [...this.props.data.users],
             events = [...store.getState().events],
-            eventInfo = [...this.props.data.events].filter(el => el.eventID === eventID)[0],
-            eventDonations = [...this.props.data.donations].filter(el => el.eventID === eventID),
-            eventUsers = [...events].filter(el => el.eventID === eventID)[0].eventUsers;
+            eventInfo = [...this.props.data.events].filter(el => el._id === eventID)[0],
+            eventDonations = [...this.props.data.donations].filter(el => el._id === eventID),
+            eventUsers = [...events].filter(el => el._id === eventID)[0].eventUsers;
         
         return (
             <div className="event-detailed">

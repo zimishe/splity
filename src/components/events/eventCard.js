@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom'
 import { getShortDate } from './../../actions/formatDate'
 
 const EventCard = ({props}) => {
-    let url = 'event/'+props.eventID;
+    let url = 'event/'+props._id;
 
     return (
         <div className="event">

@@ -5,7 +5,7 @@
 import store from './../store/store'
 
 export function getEventData(eventID, eventUsers) {
-    let event = [...store.getState().events].filter(el => el.eventID === eventID)[0];
+    let event = [...store.getState().events].filter(el => el._id === eventID)[0];
 
     if (eventID !== undefined) {
         return  {
