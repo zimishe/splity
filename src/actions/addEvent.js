@@ -3,6 +3,7 @@
  */
 
 import store from './../store/store'
+import request from 'request'
 
 import BASE_URL from './../actions/getHost'
 import { addEvent } from './../actions/actionCreators/addEvent'
@@ -19,14 +20,16 @@ export function addEventData(e, date, description) {
         eventUsers: pickedUsers,
         totalAmount: 0
     };
-    
-    store.dispatch(addEvent([...events, dataToAdd]));
 
-    fetch(BASE_URL+'addevent', {
-        method: 'post',
-        body: '228'
-    }).then(response => {
-        console.log('response', response);
+    request({
+        uri: BASE_URL+'addevent',
+        method: "post",
+        form: dataToAdd
+    }, function(error, response, body) {
+        dataToAdd._id = JSON.parse(body);
+        store.dispatch(addEvent([...events, dataToAdd]));
+        
+        console.log('store', store.getState().events);
     });
      
     // localStorage.setItem('events', JSON.stringify([...events, dataToAdd]));
