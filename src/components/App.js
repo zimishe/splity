@@ -2,14 +2,14 @@ import '../assets/css/style.css'
 import React, { Component } from 'react'
 
 import Main from './main'
-import TopPanel from './topPanel'
+import TopPanel from './topPanel/topPanel'
 
 class App extends Component {
     render() {
        return (
             <div className="splity">
                 <TopPanel />
-                <Main />
+                {/*<Main />*/}
             </div>
         );
     }
