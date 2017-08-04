@@ -17,7 +17,7 @@ class TopPanel extends Component {
                 <div className="auth__toggle">
                     LOGIN
                 </div>
-                <div className="auth auth--visible">
+                <div className="auth">
                     <ul className="auth__tabs__controls">
                         <li className="auth__tab__control">Login</li>
                         <li className="auth__tab__control auth__tab__control--active">Register</li>

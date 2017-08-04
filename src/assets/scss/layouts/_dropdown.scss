@@ -433,6 +433,7 @@ body {
 
     &.auth--visible {
         display: flex;
+        z-index: 1;
     }
 }
 
