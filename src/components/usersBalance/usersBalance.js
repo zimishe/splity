@@ -9,8 +9,6 @@ import SingleUserBalance from './singleUserBalance'
 import { countUserBalance, countTotalAmount } from './../../actions/countUserBalance'
 
 const UsersBalance = ({ eventUsers, eventDonations, users }) => {
-    console.log('users', users);
-    
     return (
         <div className="users-balance">
             <h3>Users balance</h3>

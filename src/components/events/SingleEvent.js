@@ -50,7 +50,7 @@ const mapDispatchToProps = function (dispatch) {
                         method: "post",
                         form: dataToSend
                     }, function(error, response, body) {
-                        console.log('body', JSON.parse(body));
+                        // console.log('body', JSON.parse(body));
                     });
                     resolve();
                 })
@@ -58,8 +58,6 @@ const mapDispatchToProps = function (dispatch) {
 
             setStorageTotalAmount().then(() => {
                 store.dispatch(updateEventData(eventDataToSend));
-                
-                console.log('don', store.getState().donations);
                 
                 localStorage.setItem('donations', JSON.stringify(store.getState().donations));
             }).then(() => {
