@@ -5,6 +5,8 @@ import Login from './../authorization/login'
 import UserInfo from './../topPanel/userInfo'
 import store from './../../store/store'
 
+import { setLoggedUserInfo } from './../../actions/actionCreators/setLoggedUserInfo'
+
 import { withRouter } from 'react-router'
 import { connect } from 'react-redux'
 
@@ -23,11 +25,23 @@ class TopPanel extends Component {
         toggleAuthModal();
     }
     
+    logout() {
+        store.dispatch(setLoggedUserInfo([]));
+        sessionStorage.removeItem('loggedUserInfo');
+    }
+    
     checkInfo() {
-        let data = store.getState().loggedUserInfo;
+        let data = store.getState().loggedUserInfo,
+            sessionData = sessionStorage.getItem('loggedUserInfo');
         
-        if (!Array.isArray(data)) {
-            return  <UserInfo name={data.name} />;
+        if (sessionData !== null) {
+            return  <UserInfo name={JSON.parse(sessionData).name}
+                              logout={this.logout}
+                    />;
+        }   else if (!Array.isArray(data)) {
+            return  <UserInfo name={data.name}
+                              logout={this.logout}
+            />;
         }   
     }
 
@@ -36,7 +50,7 @@ class TopPanel extends Component {
         return(
             <div className="top-panel">
                 <div className="auth__toggle">
-                    LOGIN
+                    LOGIN / REGISTER
                 </div>
                 <div className="auth">
                     <ul className="auth__tabs__controls">

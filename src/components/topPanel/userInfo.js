@@ -8,6 +8,9 @@ const UserInfo = (props) => {
     return (
         <div className="user-info">
             Welcome, {props.name}
+            <button className="user__logout"
+                    onClick={props.logout}>Logout
+            </button>
         </div>
     )    
 };
