@@ -14,7 +14,7 @@ const RecentActivities = ({ eventDonations, users }) => {
                 {eventDonations.map((el, i) =>
                     <SingleActivity key={i}
                                     data={el}
-                                    userName={users.filter(user => user.id === el.userID)[0].name}
+                                    userName={users.filter(user => user._id === el.userID)[0].name}
                     />
                 )}
 

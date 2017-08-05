@@ -26,16 +26,12 @@ const mapDispatchToProps = function (dispatch) {
                 events = [...store.getState().events],
                 eventsToSet,
                 // eslint-disable-next-line
-                eventDonations = [...donations].filter(el => el.eventID === eventID),
-                // eventTemp = eventDonations.map(el => el.userID),
-                eventUsers = [...events].filter(el => el.eventID === eventID)[0].eventUsers;
-                // eventUsers = eventTemp.filter((el, index) => eventTemp.indexOf(el) === index);
+                eventDonations = [...donations].filter(el => el._id === eventID),
+                eventUsers = [...events].filter(el => el._id === eventID)[0].eventUsers;
             
-            
-
             dataToSend = {
-                userID : 1,
-                eventID : eventID,
+                userID : JSON.parse(sessionStorage.getItem('loggedUserInfo'))._id,
+                _id : eventID,
                 amount : parseInt(e.target.childNodes[1].value, 10),
                 description : e.target.childNodes[0].value,
                 donationDate: new Date()
@@ -57,24 +53,17 @@ const mapDispatchToProps = function (dispatch) {
                 localStorage.setItem('events', JSON.stringify(store.getState().events));
             });
             
-            let eventsFiltered = [...events.filter(el => el.eventID === eventID)][0];
+            let eventsFiltered = [...events.filter(el => el._id === eventID)][0];
 
             eventsToSet = {
-                eventID: eventID,
+                _id: eventID,
                 eventDate: eventsFiltered.eventDate,
                 eventDescription : eventsFiltered.eventDescription,
                 eventUsers: [...eventUsers],
-                totalAmount: countTotalAmount([...store.getState().donations].filter(el => el.eventID === eventID))
+                totalAmount: countTotalAmount([...store.getState().donations].filter(el => el._id === eventID))
             };
 
-            eventDataToSend = [...events.filter(el => el.eventID !== eventID), eventsToSet];
-
-            // fetch('/', {
-            //     method: 'POST',
-            //     body: data
-            // }).then(function (response) {
-            //    
-            // });
+            eventDataToSend = [...events.filter(el => el._id !== eventID), eventsToSet];
         }
     }
 };
