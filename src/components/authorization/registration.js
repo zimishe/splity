@@ -11,8 +11,25 @@ class Registration extends Component {
         super(props);
         
         this.state = {
-            errors: []
+            errors: [],
+            success: false
         }
+    }
+    
+    registrationSuccess() {
+        let form = document.querySelector('.auth__tab__registration'),
+            success = document.querySelector('.auth__tab.auth__tab--visible .auth__tab__success'),
+            controls = Array.from(document.querySelectorAll('.auth__tab__control')),
+            tabs = Array.from(document.querySelectorAll('.auth__tab'));
+
+        success.classList.add('auth__tab__success--visible');
+        form.reset();
+        
+        setTimeout(() => {
+            success.classList.remove('auth__tab__success--visible');    
+            controls.forEach(control => control.classList.toggle('auth__tab__control--active'));
+            tabs.forEach(control => control.classList.toggle('auth__tab--visible'));
+        }, 2500)
     }
     
     checkError(name) {
@@ -22,7 +39,7 @@ class Registration extends Component {
             let errField = errors.filter(error => error.field === name);
 
             if (errField !== undefined && errField.length !== 0) {
-                let input = document.querySelector('input[name='+name+']');
+                // let input = document.querySelector('input[name='+name+']');
                 
                 // input.classList.add('invalid');
                 
@@ -49,9 +66,20 @@ class Registration extends Component {
             method: "post",
             form: dataToSend
         }, function(error, response, body) {
-            that.setState(() => {
-                return {errors: JSON.parse(body).errors}
-            })
+            
+            if (JSON.parse(body).status !== 1) {
+                that.setState(() => {
+                    return {errors: JSON.parse(body).errors}
+                })    
+            }   else {
+                that.setState(() => {
+                    return {success: true}
+                });
+                
+                sessionStorage.setItem('loggedUserID', JSON.parse(body).userID);
+                
+                that.registrationSuccess();
+            }
         });
     }
     
@@ -60,6 +88,10 @@ class Registration extends Component {
             <form className="auth__tab auth__tab__registration auth__tab--visible"
                   onSubmit={this.registerUser.bind(this)}
             >
+                <div className="auth__tab__success">
+                    <h4>Congrats, you have successfully registered!</h4>
+                    <h4>Now you can log in</h4>
+                </div>
                 <h3>Register</h3>
                 <div className="auth__tab__input"
                      data-error={this.checkError('user_name')}>
