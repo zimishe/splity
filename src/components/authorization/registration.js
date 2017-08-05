@@ -5,25 +5,28 @@
 import React, { Component } from 'react'
 import BASE_URL from './../../actions/getHost'
 import request from 'request'
-import FormData from 'form-data'
 
 class Registration extends Component {
     registerUser(e) {
         e.preventDefault();
 
         let dataToSend = {};
+        
+        let form = e.target,
+            inputs = Array.from(form.getElementsByTagName('input'));
+        
+        inputs.forEach(el => {
+            dataToSend[el.name] = el.value;
+        });
 
         request({
             uri: BASE_URL+'register',
             method: "post",
-            formData: dataToSend
+            form: dataToSend
         }, function(error, response, body) {
-            console.log('resp', response);
             console.log('body', body);
         });
     }
-
-
 
     render() {
         return (

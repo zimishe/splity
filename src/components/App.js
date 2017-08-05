@@ -9,7 +9,7 @@ class App extends Component {
        return (
             <div className="splity">
                 <TopPanel />
-                <Main />
+                {/*<Main />*/}
             </div>
         );
     }
