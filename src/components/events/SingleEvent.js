@@ -31,7 +31,7 @@ const mapDispatchToProps = function (dispatch) {
             
             dataToSend = {
                 userID : JSON.parse(sessionStorage.getItem('loggedUserInfo'))._id,
-                _id : eventID,
+                eventID : eventID,
                 amount : parseInt(e.target.childNodes[1].value, 10),
                 description : e.target.childNodes[0].value,
                 donationDate: new Date()
@@ -80,7 +80,7 @@ class SingleEvent extends Component {
             users = [...this.props.data.users],
             events = [...store.getState().events],
             eventInfo = [...this.props.data.events].filter(el => el._id === eventID)[0],
-            eventDonations = [...this.props.data.donations].filter(el => el._id === eventID),
+            eventDonations = [...this.props.data.donations].filter(el => el.eventID === eventID),
             eventUsers = [...events].filter(el => el._id === eventID)[0].eventUsers;
         
         return (
