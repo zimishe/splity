@@ -14,6 +14,7 @@ fetch(BASE_URL+'getInitialData', {
         initialState.events = data.events;
         initialState.donations = data.donations;
         initialState.pickedUsers = [];
+        initialState.loggedUserInfo = [];
     }).then(() => {
         RenderApp()
     })

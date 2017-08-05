@@ -3,8 +3,9 @@
  */
 
 import React, { Component } from 'react'
-import BASE_URL from './../../actions/getHost'
-import request from 'request'
+
+import { registrationSuccess } from './../../actions/authorization/registrationSuccess'
+import { registerUser } from './../../actions/authorization/registerUser'
 
 class Registration extends Component {
     constructor(props) {
@@ -17,19 +18,7 @@ class Registration extends Component {
     }
     
     registrationSuccess() {
-        let form = document.querySelector('.auth__tab__registration'),
-            success = document.querySelector('.auth__tab.auth__tab--visible .auth__tab__success'),
-            controls = Array.from(document.querySelectorAll('.auth__tab__control')),
-            tabs = Array.from(document.querySelectorAll('.auth__tab'));
-
-        success.classList.add('auth__tab__success--visible');
-        form.reset();
-        
-        setTimeout(() => {
-            success.classList.remove('auth__tab__success--visible');    
-            controls.forEach(control => control.classList.toggle('auth__tab__control--active'));
-            tabs.forEach(control => control.classList.toggle('auth__tab--visible'));
-        }, 2500)
+        registrationSuccess();
     }
     
     checkError(name) {
@@ -39,10 +28,6 @@ class Registration extends Component {
             let errField = errors.filter(error => error.field === name);
 
             if (errField !== undefined && errField.length !== 0) {
-                // let input = document.querySelector('input[name='+name+']');
-                
-                // input.classList.add('invalid');
-                
                 return errField[0].text
             }
         }
@@ -51,36 +36,9 @@ class Registration extends Component {
     registerUser(e) {
         e.preventDefault();
         
-        let dataToSend = {},
-            that = this;
-        
-        let form = e.target,
-            inputs = Array.from(form.getElementsByTagName('input'));
-        
-        inputs.forEach(el => {
-            dataToSend[el.name] = el.value;
-        });
+        let that = this;
 
-        request({
-            uri: BASE_URL+'register',
-            method: "post",
-            form: dataToSend
-        }, function(error, response, body) {
-            
-            if (JSON.parse(body).status !== 1) {
-                that.setState(() => {
-                    return {errors: JSON.parse(body).errors}
-                })    
-            }   else {
-                that.setState(() => {
-                    return {success: true}
-                });
-                
-                sessionStorage.setItem('loggedUserID', JSON.parse(body).userID);
-                
-                that.registrationSuccess();
-            }
-        });
+        registerUser(e, that)
     }
     
     render() {
