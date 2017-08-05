@@ -18,7 +18,7 @@ export function countUserBalance(userID, userscount, total, donations) {
 
 export function countTotalAmount(donations) {
     return donations
-        .map(el => el.amount)
+        .map(el => parseInt(el.amount, 10))
         .reduce((sum, current) => {
             return sum + current;
         }, 0);

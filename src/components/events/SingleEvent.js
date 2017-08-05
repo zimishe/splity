@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import store from './../../store/store'
 import { withRouter } from 'react-router'
 import { connect } from 'react-redux'
+import request from 'request'
+import BASE_URL from './../../actions/getHost'
 
 import DonateForm from './../forms/donate'
 import RecentActivities from './../recentActivities/recentActivities'
@@ -42,12 +44,23 @@ const mapDispatchToProps = function (dispatch) {
             function setStorageTotalAmount() {
                 return new Promise((resolve) => {
                     store.dispatch(addDonation(donationsToSet));
+                    
+                    request({
+                        uri: BASE_URL+'donate',
+                        method: "post",
+                        form: dataToSend
+                    }, function(error, response, body) {
+                        console.log('body', JSON.parse(body));
+                    });
                     resolve();
                 })
             }
 
             setStorageTotalAmount().then(() => {
                 store.dispatch(updateEventData(eventDataToSend));
+                
+                console.log('don', store.getState().donations);
+                
                 localStorage.setItem('donations', JSON.stringify(store.getState().donations));
             }).then(() => {
                 localStorage.setItem('events', JSON.stringify(store.getState().events));
@@ -60,7 +73,7 @@ const mapDispatchToProps = function (dispatch) {
                 eventDate: eventsFiltered.eventDate,
                 eventDescription : eventsFiltered.eventDescription,
                 eventUsers: [...eventUsers],
-                totalAmount: countTotalAmount([...store.getState().donations].filter(el => el._id === eventID))
+                totalAmount: countTotalAmount([...store.getState().donations].filter(el => el.eventID === eventID))
             };
 
             eventDataToSend = [...events.filter(el => el._id !== eventID), eventsToSet];
