@@ -4,10 +4,9 @@
 
 export function countUserBalance(userID, userscount, total, donations) {
     function getUserDonations() {
-        
         return donations
-            .filter(el => el.userID === userID)
-            .map(el => el.amount)
+            .filter(el => el.userID === userID._id)
+            .map(el => parseInt(el.amount, 10))
             .reduce((sum, current) => {
                 return sum + current;
             }, 0);
