@@ -5,11 +5,27 @@
 import React from 'react'
 
 import SingleUserBalance from './singleUserBalance'
+import LoginWarning from './../../components/authorization/loginWarning'
 
+import BalanceSummary from './summary'
+import { checkLogged } from './../../actions/authorization/checkLogged'
 import { countUserBalance, countTotalAmount } from '../../actions/eventActions/countUserBalance'
 
 const UsersBalance = ({ eventUsers, eventDonations, users }) => {
     let userInfo = JSON.parse(sessionStorage.getItem('loggedUserInfo'));
+
+    function checkBalance() {
+        if (checkLogged()) {
+            return <BalanceSummary eventDonations={eventDonations}
+                                   eventUsers={eventUsers}
+                                   userInfo={userInfo}
+                    />
+        }   else {
+            return <LoginWarning message="you must be logged in to see balance"
+                                 containerClass="user-balance__total__warning"
+                    />
+        }
+    }
 
     return (
         <div className="users-balance">
@@ -30,20 +46,7 @@ const UsersBalance = ({ eventUsers, eventDonations, users }) => {
                     />
                 )}
             </div>
-            <div className="users-balance__total">
-                <p>Загалом: <strong>{countTotalAmount(eventDonations)}</strong> грн</p>
-                <p>З кожного: <strong>{countTotalAmount(eventDonations)/eventUsers.length} </strong> грн
-                </p>
-
-                <p>Ви внесли: <strong>{countUserBalance(
-                                            userInfo,
-                                            eventUsers.length,
-                                            countTotalAmount(eventDonations),
-                                            eventDonations) +
-                                        countTotalAmount(eventDonations)/eventUsers.length}
-                              </strong> грн
-                </p>
-            </div>
+            {checkBalance()}
         </div>
     )
 };

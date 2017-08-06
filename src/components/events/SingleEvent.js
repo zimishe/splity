@@ -7,9 +7,12 @@ import DonateForm from './../forms/donate'
 import RecentActivities from './../recentActivities/recentActivities'
 import UsersBalance from './../usersBalance/usersBalance'
 import AddUserForm from './../forms/addUser'
+import LoginWarning from './../authorization/loginWarning'
 
 import { getShortDate } from '../../actions/formatDate/formatDate'
 import { eventDonate } from './../../actions/eventActions/eventDonate'
+
+import { checkLogged } from './../../actions/authorization/checkLogged'
 
 const mapDispatchToProps = function (dispatch) {
     return {
@@ -45,11 +48,16 @@ class SingleEvent extends Component {
                         </strong>
                         {getShortDate(eventInfo.eventDate)}</p>
                 </div>
-                <DonateForm onSubmit={this.props.eventDonate.bind(this, eventID)} />
+
+                { checkLogged() ? <DonateForm onSubmit={this.props.eventDonate.bind(this, eventID)} /> :
+                    <LoginWarning containerClass="event-detailed__warning"
+                                  message="you must be logged in to donate" />
+                }
+
                 <AddUserForm users={users}
                              eventID={eventID}
                 />
-                
+
                 <RecentActivities eventDonations = {eventDonations}
                                   users = {users} />
                 

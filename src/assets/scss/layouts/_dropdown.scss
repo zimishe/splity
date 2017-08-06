@@ -77,6 +77,8 @@ body {
 }
 
 .event-detailed__title {
+    flex-basis: 100%;
+
     p {
         strong {
             padding-right: 10px;
@@ -125,6 +127,19 @@ body {
             cursor: pointer;
             background: #1E88E5;
         }
+    }
+}
+
+.event-detailed__warning {
+    padding: 5px;
+    margin: 5px 0;
+    display: flex;
+    align-items: center;
+    background: #fff;
+
+    h5 {
+       font: rem(20px, 24px) $regular;
+        color: #E91E63;
     }
 }
 
@@ -223,6 +238,20 @@ body {
 
 .users-balance__sum {
     border-left: 1px solid #000;
+}
+
+.user-balance__total__warning {
+    padding: 5px 5px 0 5px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    background: #fff;
+    text-align: right;
+
+    h5 {
+        font: rem(20px, 24px) $regular;
+        color: #E91E63;
+    }
 }
 
 .user-balance__item--in-debt {
