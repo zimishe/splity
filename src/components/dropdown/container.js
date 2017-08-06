@@ -4,8 +4,8 @@
 
 import React, { Component } from 'react'
 import DropdownItem from './dropdownItem'
-import { getEventData } from './../../actions/getEventData'
-import { setDropdownValue } from './../../actions/setDropdownValue'
+import { getEventData } from '../../actions/eventActions/getEventData'
+import { setDropdownValue } from '../../actions/dropdown/setDropdownValue'
 import store from './../../store/store'
 
 class DropDown extends Component {
@@ -28,12 +28,11 @@ class DropDown extends Component {
             // eslint-disable-next-line
             pickedUsers,
             eventUsers;
-        
+
         if (store.getState().events.filter(el => el._id === eventID).length > 0) {
             eventUsers = store.getState().events.filter(el => el._id === this.props.eventID)[0].eventUsers;
-            // console.log('11111', eventUsers);
         }   else {
-            eventUsers = store.getState().users;
+            eventUsers = store.getState().pickedUsers;
         }
         
         function setDropdownUsers(eventUsers) {

@@ -6,7 +6,7 @@ import React from 'react'
 
 import SingleUserBalance from './singleUserBalance'
 
-import { countUserBalance, countTotalAmount } from './../../actions/countUserBalance'
+import { countUserBalance, countTotalAmount } from '../../actions/eventActions/countUserBalance'
 
 const UsersBalance = ({ eventUsers, eventDonations, users }) => {
     let userInfo = JSON.parse(sessionStorage.getItem('loggedUserInfo'));

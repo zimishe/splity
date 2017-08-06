@@ -6,7 +6,7 @@ import React, { Component } from 'react'
 import Datetime from 'react-datetime'
 
 import AddUserForm from './addUser'
-import { addEventData } from './../../actions/addEvent'
+import { addEventData } from '../../actions/eventActions/addEvent'
 
 class AddEventForm extends Component {
     createRoom(e) {

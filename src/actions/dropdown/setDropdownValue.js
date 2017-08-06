@@ -2,10 +2,10 @@
  * Created by eugene on 06/13/17.
  */
 
-import store from './../store/store'
-import { getEventData } from './../actions/getEventData'
-import { setPickedUsers } from './../actions/actionCreators/setPickedUsers'
-import { updateEventData } from './../actions/updateEventData'
+import store from '../../store/store'
+import { getEventData } from '../eventActions/getEventData'
+import { setPickedUsers } from '../actionCreators/setPickedUsers'
+import { updateEventData } from '../actionCreators/updateEventData'
 
 export function setDropdownValue(props, userID, e) {
     let classlist = e.target.classList,

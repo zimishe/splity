@@ -2,7 +2,7 @@
  * Created by eugene on 06/17/17.
  */
 
-import store from './../store/store'
+import store from '../../store/store'
 
 export function getEventData(eventID, eventUsers) {
     let event = [...store.getState().events].filter(el => el._id === eventID)[0];

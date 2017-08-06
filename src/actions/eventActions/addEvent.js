@@ -2,11 +2,11 @@
  * Created by eugene on 06/13/17.
  */
 
-import store from './../store/store'
+import store from '../../store/store'
 import request from 'request'
 
-import BASE_URL from './../actions/getHost'
-import { addEvent } from './../actions/actionCreators/addEvent'
+import BASE_URL from '../getHost'
+import { addEvent } from '../actionCreators/addEvent'
 
 export function addEventData(e, date, description) {
     e.preventDefault();

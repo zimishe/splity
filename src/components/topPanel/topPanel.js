@@ -10,7 +10,7 @@ import { setLoggedUserInfo } from './../../actions/actionCreators/setLoggedUserI
 import { withRouter } from 'react-router'
 import { connect } from 'react-redux'
 
-import { authTabs, toggleAuthModal } from './../../actions/authTabs'
+import { authTabs, toggleAuthModal } from '../../actions/authorization/authTabs'
 
 
 const mapStateToProps = function () {

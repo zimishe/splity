@@ -4,7 +4,7 @@
 
 import React from 'react'
 
-import { getFullDate } from './../../actions/formatDate'
+import { getFullDate } from '../../actions/formatDate/formatDate'
 
 const SingleActivity = ({data, userName}) => {
     return (
