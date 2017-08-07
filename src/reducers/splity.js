@@ -46,6 +46,14 @@ let reducer = function reducer(state = initialState, action) {
             pickedUsers: state.pickedUsers,
             loggedUserInfo: action.loggedUserInfo
         };
+
+        case 'USER_REGISTERED' : return {
+            users: [...state.users, action.newUser],
+            events: state.events,
+            donations: state.donations,
+            pickedUsers: state.pickedUsers,
+            loggedUserInfo: state.loggedUserInfo
+        };
        
         default : return state
     }

@@ -4,6 +4,8 @@
 
 import request from 'request'
 import BASE_URL from './../../actions/getHost'
+import store from './../../store/store'
+import { registerNewUser } from './../../actions/actionCreators/registerUser'
 
 export function registerUser(e, that) {
     let dataToSend = {},
@@ -28,6 +30,8 @@ export function registerUser(e, that) {
             that.setState(() => {
                 return {success: true}
             });
+
+            store.dispatch(registerNewUser(JSON.parse(body).userInfo));
 
             that.registrationSuccess();
         }

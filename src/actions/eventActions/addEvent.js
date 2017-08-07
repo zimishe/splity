@@ -28,8 +28,6 @@ export function addEventData(e, date, description) {
     }, function(error, response, body) {
         dataToAdd._id = JSON.parse(body);
         store.dispatch(addEvent([...events, dataToAdd]));
-        
-        console.log('store', store.getState().events);
     });
      
     // localStorage.setItem('events', JSON.stringify([...events, dataToAdd]));
