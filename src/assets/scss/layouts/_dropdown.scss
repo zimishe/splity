@@ -379,6 +379,29 @@ body {
 .dropdown__values {
     width: 300px;
     cursor: pointer;
+    position: relative;
+    
+    &:before {
+        content: attr(data-error);
+        position: absolute;
+        left: 0;
+        bottom: -20px;
+        font: rem(12px, 16px) $regular;
+        color: red;
+        transition: all .2s ease;
+        opacity: 0;
+        visibility: hidden;
+    }
+    
+    &.dropdown__values--empty {
+        border: 1px solid rgba(239, 64, 64, 0.8);
+        background: rgba(253, 171, 171, 0.5);
+        
+        &:before {
+            opacity: 1;
+            visibility: visible;
+        }
+    }
 }
 
 .dropdown__list__item__remove {

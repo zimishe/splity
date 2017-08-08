@@ -69,7 +69,9 @@ class DropDown extends Component {
         
         return (
             <div className="dropdown">
-                <div className="dropdown__values" onClick={this.toggleDropdown}>
+                <div className="dropdown__values"
+                     data-error="Будь-ласка, оберіть користувачів"
+                     onClick={this.toggleDropdown}>
                     {(
                         eventUsers.length > 0) ?
                         eventUsers.map((el, index) => 
