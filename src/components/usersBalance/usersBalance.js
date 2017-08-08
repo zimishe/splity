@@ -26,7 +26,7 @@ const UsersBalance = ({ eventUsers, eventDonations, users }) => {
                     />
         }
     }
-
+    
     return (
         <div className="users-balance">
             <h3>Users balance</h3>
@@ -42,7 +42,7 @@ const UsersBalance = ({ eventUsers, eventDonations, users }) => {
                                                 eventUsers.length,
                                                 countTotalAmount(eventDonations),
                                                 eventDonations)}
-                                 userName={users.filter(user => user._id === el._id)[0].name}
+                                 userName={el.name}
                     />
                 )}
             </div>

@@ -15,6 +15,7 @@ export function loginUser(e, that) {
     inputs.forEach(el => {
         dataToSend[el.name] = el.value;
     });
+    
 
     request({
         uri: BASE_URL+'login',
