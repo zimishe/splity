@@ -3,24 +3,21 @@
  */
 
 export function authTabs() {
-    let controls = [].slice.call(document.querySelectorAll('.auth__tab__control')),
-        tabs = [].slice.call(document.querySelectorAll('.auth__tab'));
-
-    controls.forEach(function (control) {
-        control.addEventListener('click', function (e) {
-            controls.forEach(function (item) {
-                item.classList.remove('auth__tab__control--active');
-                e.target.classList.add('auth__tab__control--active');
-            });
-
-            tabs.forEach(function (tab) {
-                tab.classList.remove('auth__tab--visible')
-            });
-
-            let index = controls.indexOf(e.target);
-            tabs[index].classList.add('auth__tab--visible');
-        })
-    })
+    let container = document.querySelector('.auth__tabs__controls');
+    
+    container.addEventListener('click', (e) => {
+        let controls = [].slice.call(document.querySelectorAll('.auth__tab__control')),
+            tabs = [].slice.call(document.querySelectorAll('.auth__tab')),
+            index = controls.indexOf(e.target);
+        
+        controls.forEach(control => control.classList.remove('auth__tab__control--active'));
+        
+        e.target.classList.add('auth__tab__control--active');
+        
+        tabs.forEach(tab => tab.classList.remove('auth__tab--visible'));
+        
+        tabs[index].classList.add('auth__tab--visible');
+    });
 }
 
 export function toggleAuthModal() {

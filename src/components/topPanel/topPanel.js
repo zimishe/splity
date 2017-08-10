@@ -6,6 +6,7 @@ import UserInfo from './../topPanel/userInfo'
 import store from './../../store/store'
 
 import { setLoggedUserInfo } from './../../actions/actionCreators/setLoggedUserInfo'
+import { checkLogged } from './../../actions/authorization/checkLogged'
 
 import { withRouter } from 'react-router'
 import { connect } from 'react-redux'
@@ -54,11 +55,11 @@ class TopPanel extends Component {
                 </div>
                 <div className="auth">
                     <ul className="auth__tabs__controls">
-                        <li className="auth__tab__control">Login</li>
+                        {!checkLogged() && <li className="auth__tab__control">Login</li>}
                         <li className="auth__tab__control auth__tab__control--active">Register</li>
                     </ul>
                     <div className="auth__tabs">
-                        <Login />
+                        { !checkLogged() && <Login />}
                         <Registration />
                     </div>
                 </div>
