@@ -51,8 +51,7 @@ body {
 
     h3 {
         font: 16px/20px $regular;
-        border-bottom: 1px solid #000;
-        flex-basis: 100%;
+        //flex-basis: 100%;
         padding: 0 10px 10px 10px;
     }
 
@@ -67,6 +66,21 @@ body {
     strong {
         padding-left: 7px;
     }
+}
+
+.event__info__caption {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid #000;
+    padding-right: 10px;
+}
+
+.event__info__bottom-info {
+    display: flex;
+}
+
+.event__info__users {
+    padding: 0 10px;
 }
 
 .event-detailed {

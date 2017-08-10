@@ -12,9 +12,24 @@ const EventCard = ({props}) => {
     return (
         <div className="event">
             <Link to={url} className="event__info">
-                <h3>{getShortDate(props.eventDate)}</h3>
+                <div className="event__info__caption">
+                    <h3>{getShortDate(props.eventDate)}</h3>
+                    <span className="event__info__total">
+                        <strong>{props.totalAmount}</strong> грн.
+                    </span>
+                </div>
                 <h4>{(props.eventDescription !== '') ? props.eventDescription : 'Без опису :('}</h4>
-                <p>Витрачено: <strong>{props.totalAmount}</strong> грн.</p>
+                <div className="event__info__bottom-info">
+                    <span className="event__info__users">
+                        <ul>
+                            {props.eventUsers.map((user, i) =>
+                                <li key={i}>
+                                    {user.name}
+                                </li>
+                            )}
+                        </ul>
+                    </span>
+                </div>
             </Link>
         </div>
     )
