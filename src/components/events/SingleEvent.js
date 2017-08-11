@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import store from './../../store/store'
+import { createNewStore } from './../../store/store'
 import { withRouter } from 'react-router'
 import { connect } from 'react-redux'
 
@@ -25,7 +25,7 @@ const mapDispatchToProps = function (dispatch) {
 
 const mapStateToProps = function () {
     return {
-        data : store.getState()
+        data : createNewStore.getState()
     }
 };
 
@@ -34,7 +34,7 @@ class SingleEvent extends Component {
     render() {
         let eventID = this.props.match.params.number,
             users = [...this.props.data.users],
-            events = [...store.getState().events],
+            events = [...createNewStore.getState().events],
             eventInfo = [...this.props.data.events].filter(el => el._id === eventID)[0],
             eventDonations = [...this.props.data.donations].filter(el => el.eventID === eventID),
             eventUsers = [...events].filter(el => el._id === eventID)[0].eventUsers;

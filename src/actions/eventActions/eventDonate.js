@@ -5,7 +5,7 @@
 import request from 'request'
 import BASE_URL from './../../actions/getHost'
 
-import store from './../../store/store'
+import { createNewStore } from './../../store/store'
 import { countTotalAmount } from './countUserBalance'
 import { addDonation } from '../../actions/actionCreators/addDonation'
 import { updateEventData } from '../../actions/actionCreators/updateEventData'
@@ -15,9 +15,9 @@ export function eventDonate(eventID, e) {
 
     let dataToSend,
         eventDataToSend,
-        donations = store.getState().donations,
+        donations = createNewStore().getState().donations,
         donationsToSet,
-        events = [...store.getState().events],
+        events = [...createNewStore().getState().events],
         eventsToSet,
         // eslint-disable-next-line
         eventDonations = [...donations].filter(el => el._id === eventID),
@@ -35,7 +35,7 @@ export function eventDonate(eventID, e) {
 
     function setStorageTotalAmount() {
         return new Promise((resolve) => {
-            store.dispatch(addDonation(donationsToSet));
+            createNewStore().dispatch(addDonation(donationsToSet));
 
             request({
                 uri: BASE_URL+'donate',
@@ -49,11 +49,24 @@ export function eventDonate(eventID, e) {
     }
 
     setStorageTotalAmount().then(() => {
-        store.dispatch(updateEventData(eventDataToSend));
+        createNewStore().dispatch(updateEventData(eventDataToSend));
+        
+        let dataToUpdate = {
+            eventID: eventID,
+            totalAmount: countTotalAmount([...createNewStore().getState().donations].filter(el => el.eventID === eventID))
+        };
 
-        localStorage.setItem('donations', JSON.stringify(store.getState().donations));
+        request({
+            uri: BASE_URL+'updateEvent',
+            method: "put",
+            form: dataToUpdate
+        }, function(error, response, body) {
+            // console.log('body', JSON.parse(body));
+        });
+        
+        localStorage.setItem('donations', JSON.stringify(createNewStore().getState().donations));
     }).then(() => {
-        localStorage.setItem('events', JSON.stringify(store.getState().events));
+        localStorage.setItem('events', JSON.stringify(createNewStore().getState().events));
     });
 
     let eventsFiltered = [...events.filter(el => el._id === eventID)][0];
@@ -63,9 +76,9 @@ export function eventDonate(eventID, e) {
         eventDate: eventsFiltered.eventDate,
         eventDescription : eventsFiltered.eventDescription,
         eventUsers: [...eventUsers],
-        totalAmount: countTotalAmount([...store.getState().donations].filter(el => el.eventID === eventID))
+        totalAmount: countTotalAmount([...createNewStore().getState().donations].filter(el => el.eventID === eventID))
     };
-
+    
     eventDataToSend = [...events.filter(el => el._id !== eventID), eventsToSet];
 }
 

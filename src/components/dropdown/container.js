@@ -6,7 +6,7 @@ import React, { Component } from 'react'
 import DropdownItem from './dropdownItem'
 import { getEventData } from '../../actions/eventActions/getEventData'
 import { setDropdownValue } from '../../actions/dropdown/setDropdownValue'
-import store from './../../store/store'
+import  { createNewStore } from './../../store/store'
 
 class DropDown extends Component {
     updateDropdownData(eventDataToSet, userID, e) {
@@ -29,10 +29,10 @@ class DropDown extends Component {
             pickedUsers,
             eventUsers;
 
-        if (store.getState().events.filter(el => el._id === eventID).length > 0) {
-            eventUsers = store.getState().events.filter(el => el._id === this.props.eventID)[0].eventUsers;
+        if (createNewStore().getState().events.filter(el => el._id === eventID).length > 0) {
+            eventUsers = createNewStore().getState().events.filter(el => el._id === this.props.eventID)[0].eventUsers;
         }   else {
-            eventUsers = store.getState().pickedUsers;
+            eventUsers = createNewStore().getState().pickedUsers;
         }
         
         function setDropdownUsers(eventUsers) {

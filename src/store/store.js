@@ -3,10 +3,15 @@
  */
 
 import { createStore } from 'redux'
-import initialState from './initialState'
 import reducer from './../reducers/splity'
 
-let store = createStore(reducer, initialState, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
+export function createNewStore(initialState) {
+    if (initialState === undefined) {
+        initialState = window.__STORE__DATA
+    }
+    
+    return createStore(reducer, initialState, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
+}
 
-export default store
+
 

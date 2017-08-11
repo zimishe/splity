@@ -4,7 +4,7 @@
 
 import request from 'request'
 import BASE_URL from './../../actions/getHost'
-import store from './../../store/store'
+import { createNewStore } from './../../store/store'
 import { setLoggedUserInfo } from './../../actions/actionCreators/setLoggedUserInfo'
 
 export function loginUser(e, that) {
@@ -28,8 +28,8 @@ export function loginUser(e, that) {
             })
         }   else {
             sessionStorage.setItem('loggedUserInfo', JSON.stringify(JSON.parse(body).userInfo));
-            
-            store.dispatch(setLoggedUserInfo(JSON.parse(body).userInfo));
+
+            createNewStore().dispatch(setLoggedUserInfo(JSON.parse(body).userInfo));
             that.loginSuccess();
         }
     });

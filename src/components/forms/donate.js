@@ -15,6 +15,7 @@ const DonateForm = ({onSubmit}) => {
             <input type="number"
                    name="donation_amount"
                    placeholder="Сума"
+                   min='0'
                    required
             />
             {/*<label>*/}

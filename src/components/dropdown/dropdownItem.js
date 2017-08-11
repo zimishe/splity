@@ -3,11 +3,11 @@
  */
 
 import React, { Component } from 'react'
-import store from './../../store/store'
+import { createNewStore } from './../../store/store'
 
 class DropdownItem extends Component {
     render() {
-        let storeUsers = store.getState().pickedUsers,
+        let storeUsers = createNewStore().getState().pickedUsers,
             pickedUser;
         
         pickedUser = storeUsers

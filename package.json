@@ -2,6 +2,7 @@
   "name": "splity.loc",
   "version": "0.1.0",
   "private": true,
+  "homepage": "./",
   "dependencies": {
     "bson": "^1.0.4",
     "express": "^4.15.3",

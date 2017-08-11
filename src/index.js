@@ -3,11 +3,11 @@ import ReactDOM from 'react-dom'
 
 import PageRouter from './components/router'
 import { Provider } from 'react-redux'
-import store from './store/store'
+// import store from './store/store'
 
 import registerServiceWorker from './registerServiceWorker'
 
-export function RenderApp() {
+export function RenderApp(store) {
     ReactDOM.render(
         <Provider store={store}>
             <PageRouter />

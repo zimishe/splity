@@ -4,7 +4,7 @@
 
 import request from 'request'
 import BASE_URL from './../../actions/getHost'
-import store from './../../store/store'
+import { createNewStore } from './../../store/store'
 import { registerNewUser } from './../../actions/actionCreators/registerUser'
 
 export function registerUser(e, that) {
@@ -31,7 +31,7 @@ export function registerUser(e, that) {
                 return {success: true}
             });
 
-            store.dispatch(registerNewUser(JSON.parse(body).userInfo));
+            createNewStore().dispatch(registerNewUser(JSON.parse(body).userInfo));
 
             that.registrationSuccess();
         }

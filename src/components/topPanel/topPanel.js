@@ -3,7 +3,8 @@ import { Link } from 'react-router-dom'
 import Registration from './../authorization/registration'
 import Login from './../authorization/login'
 import UserInfo from './../topPanel/userInfo'
-import store from './../../store/store'
+import { createNewStore } from './../../store/store'
+
 
 import { setLoggedUserInfo } from './../../actions/actionCreators/setLoggedUserInfo'
 import { checkLogged } from './../../actions/authorization/checkLogged'
@@ -13,10 +14,9 @@ import { connect } from 'react-redux'
 
 import { authTabs, toggleAuthModal } from '../../actions/authorization/authTabs'
 
-
 const mapStateToProps = function () {
     return {
-        data : store.getState()
+        data : createNewStore().getState()
     }
 };
 
@@ -27,12 +27,12 @@ class TopPanel extends Component {
     }
     
     logout() {
-        store.dispatch(setLoggedUserInfo([]));
+        createNewStore().dispatch(setLoggedUserInfo([]));
         sessionStorage.removeItem('loggedUserInfo');
     }
     
     checkInfo() {
-        let data = store.getState().loggedUserInfo,
+        let data = createNewStore().getState().loggedUserInfo,
             sessionData = sessionStorage.getItem('loggedUserInfo');
         
         if (sessionData !== null) {
@@ -47,7 +47,6 @@ class TopPanel extends Component {
     }
 
     render() {
-        
         return(
             <div className="top-panel">
                 <div className="auth__toggle">

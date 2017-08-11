@@ -6,7 +6,7 @@ import React, { Component } from 'react'
 import EventCard from './eventCard'
 import AddEventForm from './../forms/addEvent'
 
-import store from './../../store/store'
+import { createNewStore } from './../../store/store'
 
 import { withRouter } from 'react-router'
 import { connect } from 'react-redux'
@@ -23,7 +23,7 @@ const mapDispatchToProps = function (dispatch) {
 
 const mapStateToProps = function () {
     return {
-        data : store.getState()
+        data : createNewStore().getState()
     }
 };
 

@@ -2,7 +2,7 @@
  * Created by eugene on 06/13/17.
  */
 
-import store from '../../store/store'
+import { createNewStore } from '../../store/store'
 import request from 'request'
 
 import BASE_URL from '../getHost'
@@ -11,8 +11,8 @@ import { addEvent } from '../actionCreators/addEvent'
 export function addEventData(e, date, description) {
     e.preventDefault();
 
-    let pickedUsers = [...store.getState().pickedUsers],
-        events = store.getState().events,
+    let pickedUsers = [...createNewStore().getState().pickedUsers],
+        events = createNewStore().getState().events,
         dropdown = document.querySelector('.dropdown__values');
     
     let dataToAdd = {
@@ -34,7 +34,7 @@ export function addEventData(e, date, description) {
             form: dataToAdd
         }, function(error, response, body) {
             dataToAdd._id = JSON.parse(body);
-            store.dispatch(addEvent([...events, dataToAdd]));
+            createNewStore().dispatch(addEvent([...events, dataToAdd]));
         });
 
         // localStorage.setItem('events', JSON.stringify([...events, dataToAdd]));
