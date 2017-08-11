@@ -2,14 +2,10 @@ h1, h2, h3, h4 {
     color: #000;
 }
 
-body {
-    overflow: hidden;
-}
-
-
 .top-panel {
     position: relative;
     display: flex;
+    flex-wrap: wrap;
     justify-content: flex-end;
     padding: 10px 15px;
     background: #ccc;
@@ -43,8 +39,19 @@ body {
     padding: 10px 0;
     margin: 10px;
     background: #fff;
+    
+    @include respond-to(md) {
+        flex-basis: calc(33.333% - 20px);
+    }
+    
+    @include respond-to(sm) {
+        flex-basis: calc(50% - 20px);
+    }
+    
+    @include respond-to(xs) {
+        flex-basis: 100%;
+    }
 }
-
 
 .event__info {
     flex-basis: 100%;
@@ -85,7 +92,7 @@ body {
 
 .event-detailed {
     display: flex;
-    flex-basis: 100%;
+    flex-basis: calc(100% - 30px);
     flex-wrap: wrap;
     padding: 0 15px;
 }
@@ -102,6 +109,7 @@ body {
 
 .event-detailed__donate {
     display: flex;
+    flex-wrap: wrap;
     flex-basis: 100%;
     padding-top: 10px;
     
@@ -142,6 +150,16 @@ body {
             background: #1E88E5;
         }
     }
+    
+    @include respond-to(xs) {
+        margin-bottom: 15px;
+        
+        input {
+            margin-right: 0;
+            width: 100%;
+            margin-bottom: 15px;
+        }
+    }
 }
 
 .event-detailed__warning {
@@ -177,6 +195,10 @@ body {
         font: rem(20px, 20px) $regular;
         font-weight: bold;
     }
+    
+    @include respond-to(xs) {
+        flex-basis: 100%;
+    }
 }
 
 .recent-activities__list {
@@ -203,6 +225,20 @@ body {
         
         strong {
             padding-left: 5px;
+        }
+    }
+    
+    @include respond-to(xs) {
+        p {
+            span {
+                padding-left: 0;
+
+                &:nth-of-type(1) {
+                    width: 100%;
+                    display: block;
+                    padding-bottom: 5px;
+                }
+            }   
         }
     }
 }
@@ -321,6 +357,13 @@ body {
             width: 100%;
         }
     }
+    
+    @include respond-to(xs) {
+        width: 100%;
+        left: 0;
+        top: 50px;
+        margin-left: 0;
+    }
 }
 
 .add-event__toggle {
@@ -358,6 +401,10 @@ body {
             background: #01579B;
         }
     }
+    
+    @include respond-to(xs) {
+        margin-top: 15px;
+    }
 }
 
 .dropdown {
@@ -388,6 +435,10 @@ body {
         opacity: 1;
         visibility: visible;
     }
+    
+    @include respond-to(xs) {
+        width: 100%;
+    }
 }
 
 .dropdown__values {
@@ -415,6 +466,10 @@ body {
             opacity: 1;
             visibility: visible;
         }
+    }
+    
+    @include respond-to(xs) {
+        width: 100%;
     }
 }
 
@@ -511,12 +566,16 @@ body {
     padding: 0 10px;
     cursor: pointer;
     font: rem(15px, 40px) $regular;
+    
+    @include respond-to(xs) {
+        margin: 0;
+    }
 }
 
 .auth__tab {
     display: none;
     flex-wrap: wrap;
-    width: 300px;
+    width: 290px;
     padding-top: 30px;
     position: relative;
     overflow: hidden;
@@ -631,6 +690,13 @@ body {
     color: #1c18bd;
     display: flex;
     align-items: center;
+    
+    @include respond-to(xs) {
+        margin: 15px 0;
+        flex-basis: 100%;
+        justify-content: flex-end;
+        padding: 0;
+    }
 }
 
 .personal-cab {
@@ -651,4 +717,8 @@ body {
     margin: 0 15px;
     background: #FF5722;
     cursor: pointer;
+    
+    @include respond-to(xs) {
+        margin: 0 0 0 15px;
+    }
 }
