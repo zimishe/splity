@@ -32,6 +32,7 @@ const mapStateToProps = function () {
 
 class SingleEvent extends Component {
     render() {
+
         let eventID = this.props.match.params.number,
             users = [...this.props.data.users],
             events = [...store.getState().events],

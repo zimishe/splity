@@ -9,11 +9,12 @@ export function getEventData(eventID, eventUsers) {
 
     if (eventID !== undefined) {
         return  {
-            eventID: eventID,
+            _id: eventID,
+            // eventID: eventID,
             eventDate: event.eventDate,
             eventDescription: event.eventDescription,
-            totalAmount: event.totalAmount,
-            eventUsers: eventUsers
+            eventUsers: eventUsers,
+            totalAmount: event.totalAmount
         }
     }
 }

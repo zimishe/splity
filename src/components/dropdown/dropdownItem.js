@@ -7,11 +7,18 @@ import store from './../../store/store'
 
 class DropdownItem extends Component {
     render() {
-        let storeUsers = store.getState().pickedUsers,
+        let eventDataToSet = this.props.eventDataToSet,
+            storeUsers,
             pickedUser;
+
+        if (eventDataToSet === undefined) {
+            storeUsers = store.getState().pickedUsers;
+        }   else {
+            storeUsers = eventDataToSet.eventUsers;
+        }
         
         pickedUser = storeUsers
-            .filter(el => el.id === this.props.userID)
+            .filter(el => el._id === this.props.userID)
             .length;
         
         function checkSelected() {
