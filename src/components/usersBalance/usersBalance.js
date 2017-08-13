@@ -26,6 +26,7 @@ const UsersBalance = ({ eventUsers, eventDonations, users }) => {
                     />
         }
     }
+
     
     return (
         <div className="users-balance">

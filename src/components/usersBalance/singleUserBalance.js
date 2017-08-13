@@ -20,7 +20,7 @@ const SingleUserBalance = ({userBalance, userName}) => {
             </div> 
             <div className="users-balance__sum">
                 <p>
-                    <strong>{userBalance}</strong> грн
+                    <strong>{userBalance.toFixed(2)}</strong> грн
                 </p>
             </div>
         </div>

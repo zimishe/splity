@@ -9,7 +9,9 @@ const BalanceSummary = (props) => {
     return (
         <div className="users-balance__total">
             <p>Загалом: <strong>{countTotalAmount(props.eventDonations)}</strong> грн</p>
-            <p>З кожного: <strong>{countTotalAmount(props.eventDonations)/props.eventUsers.length} </strong> грн
+            <p>З кожного: <strong>
+                {(countTotalAmount(props.eventDonations)/props.eventUsers.length)
+                    .toFixed(2)} </strong> грн
             </p>
 
             <p>Ви внесли: <strong>{countUserBalance(
