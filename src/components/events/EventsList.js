@@ -14,10 +14,7 @@ import { connect } from 'react-redux'
 
 const mapDispatchToProps = function (dispatch) {
     return {
-        dispatch,
-        editTooltipTextHandler: function () {
-            console.log('here');
-        }
+        dispatch
     }
 };
 
