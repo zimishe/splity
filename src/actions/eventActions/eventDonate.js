@@ -49,7 +49,20 @@ export function eventDonate(eventID, e) {
     }
 
     setStorageTotalAmount().then(() => {
+        let updatedData = {
+            eventID: eventID,
+            totalAmount: eventsToSet.totalAmount
+        };
+
         store.dispatch(updateEventData(eventDataToSend));
+
+        request({
+            uri: BASE_URL+'updateEvent',
+            method: "put",
+            form: updatedData
+        }, function(error, response, body) {
+            // console.log('body', JSON.parse(body));
+        });
 
         localStorage.setItem('donations', JSON.stringify(store.getState().donations));
     }).then(() => {
